@@ -10,9 +10,9 @@ export const StarHeader: FC<IProps> = ({ countTaps, seconds }) => {
   return (
     <header className="mb-[35px] flex justify-between items-center w-full">
       <p className="text-white text-[30px]">
-        Тапы <span className="gradient-numbers text-[30px]">{countTaps}</span>
+        Тапы <span className="gradient-numbers text-[35px]">{countTaps}</span>
       </p>
-      <p className="text-[30px] gradient-numbers">{formatTime(seconds)}</p>
+      <p className="text-[35px] gradient-numbers">{formatTime(seconds)}</p>
     </header>
   );
 };

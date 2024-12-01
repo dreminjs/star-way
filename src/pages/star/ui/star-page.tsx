@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { StarButton, StarHeader, StarTitle } from "../../../features/star";
+import { Navigation } from "../../../features/navigation";
 
 export const StarPage = () => {
   const [spinning, setSpinning] = useState(false);
@@ -50,6 +51,7 @@ export const StarPage = () => {
         handleMouseDown={handleMouseDown}
         handleMouseUp={handleMouseUp}
       />
+      <Navigation />
     </section>
   );
 };

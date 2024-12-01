@@ -4,5 +4,5 @@ interface IProps {
   children: React.ReactNode;
 }
 export const Container: FC<IProps> = ({ children }) => {
-  return <div className="max-w-[320px] mx-auto px-4">{children}</div>;
+  return <div className="max-w-[420px] mx-auto px-4">{children}</div>;
 };
