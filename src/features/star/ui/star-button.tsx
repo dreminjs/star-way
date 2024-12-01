@@ -12,7 +12,6 @@ interface StarButtonProps {
 
 export const StarButton: FC<StarButtonProps> = ({handleMouseDown, handleMouseUp, spinning, imgRef}) => {
 
-
     return (
         <button
         className="mx-auto block"
@@ -27,6 +26,9 @@ export const StarButton: FC<StarButtonProps> = ({handleMouseDown, handleMouseUp,
             className={`w-[300px] spin ${spinning ? 'active' : ''}`}
             src={Star}
             alt="Star"
+            draggable="false"
+            onContextMenu={(e) => e.preventDefault()} 
+        
         />
     </button>
     );
