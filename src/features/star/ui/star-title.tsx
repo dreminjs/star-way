@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 export const StarTitle = () => {
   const text = "крути меня";
 
+
+
   const delay = 150;
   const [displayedText, setDisplayedText] = useState("");
   const [letterIndex, setLetterIndex] = useState(0);
