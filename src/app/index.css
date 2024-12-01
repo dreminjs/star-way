@@ -27,11 +27,16 @@
 
 img {
     -webkit-user-drag: none;
-    user-drag: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     touch-action: none;
     /* Отключаем жесты на мобильных устройствах */
+}
+
+.gradient-numbers {
+    background: linear-gradient(to top, #ff4500, #ffa500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

@@ -23,8 +23,8 @@ export const StarButton: FC<StarButtonProps> = ({
       onTouchEnd={handleMouseUp}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      onContextMenu={(e) => e.preventDefault()} // Отключаем контекстное меню
-      onTouchMove={(e) => e.preventDefault()} // Останавливаем вращение, если курсор уходит с кнопки
+      onContextMenu={(e) => e.preventDefault()} 
+      onTouchMove={(e) => e.preventDefault()}
     >
       <img
         ref={imgRef}
