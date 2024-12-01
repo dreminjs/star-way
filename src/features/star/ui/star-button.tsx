@@ -1,6 +1,8 @@
 
 import { RefObject, FC } from 'react';
 
+import Star from "../../../../src/assets/star.png"
+
 interface StarButtonProps {
     spinning: boolean;
     imgRef: RefObject<HTMLImageElement>;
@@ -21,7 +23,7 @@ export const StarButton: FC<StarButtonProps> = ({handleMouseDown, handleMouseUp,
         <img
             ref={imgRef}
             className={`w-[450px] spin ${spinning ? 'active' : ''}`}
-            src="/public/star.png"
+            src={Star}
             alt="Star"
         />
     </button>
