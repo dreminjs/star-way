@@ -1,0 +1,1 @@
+export { StarPage } from './ui/star-page'
