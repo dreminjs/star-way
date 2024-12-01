@@ -8,8 +8,6 @@ import { PAGE_URLS } from "../shared/model/constants";
 import { StarPage } from "../pages/star";
 import { TasksPage } from "../pages/tasks/ui/tasks-page";
 
-
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
