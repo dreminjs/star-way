@@ -17,6 +17,8 @@ export const StarButton: FC<StarButtonProps> = ({handleMouseDown, handleMouseUp,
         <button
         className="mx-auto block"
         onMouseDown={handleMouseDown}
+        onTouchStart={handleMouseDown}
+        onTouchEnd={handleMouseUp}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp} // Останавливаем вращение, если курсор уходит с кнопки
     >
