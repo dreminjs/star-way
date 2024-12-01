@@ -17,8 +17,7 @@
 }
 
 .spin {
-    animation: spin 5s linear infinite;
-    animation-timing-function: ease-in;
+    animation: spin 2s linear infinite;
     animation-play-state: paused;
 }
 

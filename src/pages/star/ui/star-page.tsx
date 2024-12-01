@@ -15,7 +15,8 @@ export const StarPage = () => {
   const handleMouseUp = () => {
     setSpinning(false);
     if (imgRef.current) {
-      imgRef.current.style.animationPlayState = "paused";
+        imgRef.current.style.animationPlayState = 'paused';
+        imgRef.current.style.transform = 'rotate(0deg)'; // Сброс анимации
     }
   };
 
