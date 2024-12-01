@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { formatTime } from "../../../shared";
 
 interface IProps {
   countTaps: number;
@@ -11,7 +12,7 @@ export const StarHeader: FC<IProps> = ({ countTaps, seconds }) => {
       <p className="text-white text-[30px]">
         Тапы <span className="gradient-numbers text-[30px]">{countTaps}</span>
       </p>
-      <p className="text-[30px] gradient-numbers">0:0{seconds}</p>
+      <p className="text-[30px] gradient-numbers">{formatTime(seconds)}</p>
     </header>
   );
 };
