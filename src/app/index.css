@@ -6,3 +6,22 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    animation: spin 5s linear infinite;
+    animation-timing-function: ease-in;
+    animation-play-state: paused;
+}
+
+.spin.active {
+    animation-play-state: running;
+}
