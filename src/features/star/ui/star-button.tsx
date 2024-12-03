@@ -21,7 +21,7 @@ export const StarButton: FC<StarButtonProps> = ({
       onTouchStart={handleMouseDown}
       onTouchEnd={handleMouseUp}
       onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
+   
       onContextMenu={(e) => e.preventDefault()}
       onTouchMove={(e) => e.preventDefault()}
     >
