@@ -52,7 +52,7 @@ export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100 }) => {
   }, [letterIndex, currentText, isWin, messageIndex]);
 
   return (
-    <h3 className="text-[#ebd0d0] text-center text-3xl w-[350px] mx-auto italic h-[150px]">
+    <h3 className="text-[#ebd0d0] text-center text-3xl w-[350px] mx-auto italic ">
       {displayedText}
     </h3>
   );
