@@ -42,7 +42,7 @@ export const StarPage = () => {
       const endTime = Date.now();
       const totalElapsedTime = endTime - startTime;
       setElapsedTime(totalElapsedTime);
-      postResult(10000);
+      postResult(totalElapsedTime);
     }
   };
 
