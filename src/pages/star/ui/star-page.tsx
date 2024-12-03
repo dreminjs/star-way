@@ -1,17 +1,32 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { StarButton, StarHeader, StarTitle } from "../../../features/star";
 import { Navigation } from "../../../features/navigation";
+import { usePostResult } from "../../../shared";
 
 export const StarPage = () => {
   const [spinning, setSpinning] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  const [seconds, setSeconds] = useState(0);
+
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const [startTime, setStartTime] = useState<number | null>(null);
+  const intervalRef = useRef<number | null>(null);
+
+  const { postResult, postResultData } =
+    usePostResult();
 
   const handleMouseDown = () => {
     setSpinning(true);
+    setElapsedTime(0);
+    setStartTime(0)
+    const start = Date.now();
+    setStartTime(start);
+    setElapsedTime(0);
     if (imgRef.current) {
       imgRef.current.style.animationPlayState = "running";
     }
+    intervalRef.current = setInterval(() => {
+      setElapsedTime(Date.now() - start);
+    }, 1); // Обновляем каждую миллисекунду
   };
 
   const handleMouseUp = () => {
@@ -20,31 +35,21 @@ export const StarPage = () => {
       imgRef.current.style.animationPlayState = "paused";
       imgRef.current.style.transform = "rotate(0deg)"; // Сброс анимации
     }
-  };
-
-
-  useEffect(() => {
-    let interval: number | null = null;
-    if (spinning) {
-      interval = window.setInterval(() => {
-        setSeconds((prevSeconds) => prevSeconds + 1);
-      }, 1000);
-    } else if (!spinning && seconds !== 0) {
-      if (interval) {
-        clearInterval(interval);
-      }
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
     }
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
-    };
-  }, [spinning, seconds]);
+    if (startTime !== null) {
+      const endTime = Date.now();
+      const totalElapsedTime = endTime - startTime;
+      setElapsedTime(totalElapsedTime);
+      postResult(10000);
+    }
+  };
 
   return (
     <section className="flex flex-col items-center">
-      <StarHeader countTaps={0} seconds={seconds} />
-      <StarTitle isSpinning={spinning} />
+      <StarHeader countTaps={0} seconds={elapsedTime} />
+      <StarTitle isWin={postResultData?.win} isSpinning={spinning}  />
       <StarButton
         spinning={spinning}
         imgRef={imgRef}

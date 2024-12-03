@@ -12,3 +12,5 @@ export const PAGE_URLS = {
 export const QUERY_KEYS = {
     tasks: "tasks"
 }
+
+export const BASE_URL = "https://stargameback.tw1.su/"

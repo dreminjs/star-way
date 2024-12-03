@@ -1,5 +1,7 @@
-export const formatTime = (totalSeconds: number): string => {
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-};
+export const formatTime = (totalMilliseconds: number): string => {
+    const seconds = Math.floor(totalMilliseconds / 1000);
+    const milliseconds = Math.floor((totalMilliseconds % 1000) / 10); // Преобразуем миллисекунды в двухзначный формат
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    const formattedMilliseconds = milliseconds < 10 ? `0${milliseconds}` : `${milliseconds}`;
+    return `${formattedSeconds}:${formattedMilliseconds}`;
+  };

@@ -17,8 +17,9 @@
 }
 
 .spin {
-    animation: spin 2s linear infinite;
+    animation: spin 0.8s linear infinite;
     animation-play-state: paused;
+    transition: animation-play-state 0.8s ease-out;
 }
 
 .spin.active {

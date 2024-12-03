@@ -1,6 +1,5 @@
-import { RefObject, FC } from "react";
-
-import Star from "../../../../src/assets/star.png";
+import { FC, RefObject } from "react";
+import Star from "../../../../src/assets/star.png"; // Убедитесь, что путь к изображению правильный
 
 interface StarButtonProps {
   spinning: boolean;
@@ -23,12 +22,12 @@ export const StarButton: FC<StarButtonProps> = ({
       onTouchEnd={handleMouseUp}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      onContextMenu={(e) => e.preventDefault()} 
+      onContextMenu={(e) => e.preventDefault()}
       onTouchMove={(e) => e.preventDefault()}
     >
       <img
         ref={imgRef}
-        className={`w-[300px] spin ${spinning ? "active" : ""}`}
+        className={`w-[292px] spin ${spinning ? "active" : ""}`}
         src={Star}
         alt="Star"
         draggable="false"
