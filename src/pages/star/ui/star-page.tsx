@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { StarButton, StarHeader, StarTitle } from "../../../features/star";
 import { Navigation } from "../../../features/navigation";
 import { usePostResult } from "../../../shared";
@@ -17,6 +17,10 @@ export const StarPage = () => {
   const handleHideInfoText = () => setIsInfoTextVisible(false)
 
 
+  useEffect(() => {
+    console.log(isInfoTextVisible)
+  },[isInfoTextVisible])
+
   const { postResult, postResultData } =
     usePostResult();
 
@@ -33,7 +37,7 @@ export const StarPage = () => {
     }
     intervalRef.current = setInterval(() => {
       setElapsedTime(Date.now() - start);
-    }, 1); // Обновляем каждую миллисекунду
+    }, 1);
   };
 
   const handleMouseUp = () => {

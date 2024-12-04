@@ -4,15 +4,20 @@ interface IProps {
   isSpinning: boolean;
   isWin?: boolean;
   delay?: number;
-  isInfoTextVisible: boolean
+  isInfoTextVisible: boolean;
 }
 
-export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100, isInfoTextVisible }) => {
+export const StarTitle: FC<IProps> = ({
+  isSpinning,
+  isWin,
+  delay = 100,
+  isInfoTextVisible,
+}) => {
   const [displayedText, setDisplayedText] = useState("крути меня");
   const [letterIndex, setLetterIndex] = useState(0);
   const [currentText, setCurrentText] = useState("крути меня");
   const [messageIndex, setMessageIndex] = useState(0);
-  const [infoTextIndex, setInfoTextIndex] = useState(0)
+  const [infoTextIndex, setInfoTextIndex] = useState(0);
 
   const winMessages = [
     "Я вернулась домой...Спасибо тебе огромное...",
@@ -26,6 +31,12 @@ export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100, isInfoTe
     "Пыль - индикатор приближенности к дому.",
     "...",
   ];
+
+  useEffect(() => {
+    if (!isInfoTextVisible) {
+      setInfoTextIndex(0);
+    }
+  }, [isInfoTextVisible]);
 
   useEffect(() => {
     if (isSpinning) {
@@ -44,7 +55,7 @@ export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100, isInfoTe
     setDisplayedText("");
     setLetterIndex(0);
   }, [isSpinning, isWin, isInfoTextVisible]);
-  
+
   useEffect(() => {
     if (letterIndex < currentText.length) {
       const timeout = setTimeout(() => {
@@ -69,7 +80,14 @@ export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100, isInfoTe
       }, 2000); // Задержка перед следующим сообщением
       return () => clearTimeout(nextInfoMessageTimeout);
     }
-  }, [letterIndex, currentText, isWin, messageIndex, isInfoTextVisible, infoTextIndex]);
+  }, [
+    letterIndex,
+    currentText,
+    isWin,
+    messageIndex,
+    isInfoTextVisible,
+    infoTextIndex,
+  ]);
 
   return (
     <h3 className="text-[#ebd0d0] text-center text-3xl w-[350px] h-[150px] mx-auto italic ">

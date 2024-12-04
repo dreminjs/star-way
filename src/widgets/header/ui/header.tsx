@@ -8,6 +8,7 @@ interface IProps {
 export const Header: FC<IProps> = ({ onShowInfoText }) => {
 
 
+    
     return (
 
         <header className="mb-[40px]">

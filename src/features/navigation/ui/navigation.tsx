@@ -22,16 +22,16 @@ export const Navigation = () => {
         </NavItem>
         <NavItem className="flex justify-center items-center" position={"center"}>
           {pathname === "/tasks" ? (
-            <img className="w-[60px]" src={OrdersActive} alt="Main" />
+            <img className="w-[45px]" src={OrdersActive} alt="Main" />
           ) : (
-            <img className="w-[60px]" src={Orders} alt="Main" />
+            <img className="w-[45px]" src={Orders} alt="Main" />
           )}
         </NavItem>
         <NavItem className="flex justify-center items-center pl-2" position={"right"}>
           {pathname === "/friends" ? (
-            <img className="w-[45px] h-[45px]" src={FriendsActive} alt="Main" />
+            <img className="w-[35px] h-[35px]" src={FriendsActive} alt="Main" />
           ) : (
-            <img className="w-[45px] h-[45px]" src={Friends} alt="Main" />
+            <img className="w-[35px] h-[35px]" src={Friends} alt="Main" />
           )}
         </NavItem>
       </ul>
