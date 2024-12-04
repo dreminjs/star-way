@@ -1,25 +1,17 @@
-import { FC } from "react";
-import { useLocation } from "react-router-dom";
+import { FC, ReactNode } from "react";
 
 interface IProps {
   position: string;
-  icon: string;
+  children: ReactNode
 }
 
-export const NavItem: FC<IProps> = ({ position, icon }) => {
-  const pathname = useLocation().pathname;
+export const NavItem: FC<IProps> = ({ position, children }) => {
 
   return (
     <li
       className={`bg-[url('/src/assets/${position}-nav-item.png')] h-[50px] w-[200px] bg-no-repeat bg-contain`}
     >
-      <img
-        src={`/src/assets/${icon}${
-          icon === "/" || pathname.includes(icon) ? "-active" : ""
-        }.png`}
-        alt="nav item"
-        className="h-[55px] w-[55px] mx-auto"
-      />
+      {children}
     </li>
   );
 };

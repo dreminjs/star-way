@@ -2,19 +2,26 @@ import { useState, useRef } from "react";
 import { StarButton, StarHeader, StarTitle } from "../../../features/star";
 import { Navigation } from "../../../features/navigation";
 import { usePostResult } from "../../../shared";
+import { Header } from "../../../widgets/header";
 
 export const StarPage = () => {
   const [spinning, setSpinning] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [startTime, setStartTime] = useState<number | null>(null);
   const intervalRef = useRef<number | null>(null);
+  const [isInfoTextVisible, setIsInfoTextVisible] = useState(false)
+
+  const handleShowInfoText = () => setIsInfoTextVisible(true)
+
+  const handleHideInfoText = () => setIsInfoTextVisible(false)
+
 
   const { postResult, postResultData } =
     usePostResult();
 
   const handleMouseDown = () => {
+    handleHideInfoText()
     setSpinning(true);
     setElapsedTime(0);
     setStartTime(0)
@@ -30,6 +37,7 @@ export const StarPage = () => {
   };
 
   const handleMouseUp = () => {
+    handleHideInfoText()
     setSpinning(false);
     if (imgRef.current) {
       imgRef.current.style.animationPlayState = "paused";
@@ -48,8 +56,9 @@ export const StarPage = () => {
 
   return (
     <section className="flex flex-col items-center">
+      <Header onShowInfoText={handleShowInfoText} />
       <StarHeader countTaps={0} seconds={elapsedTime} />
-      <StarTitle isWin={postResultData?.win} isSpinning={spinning}  />
+      <StarTitle isInfoTextVisible={isInfoTextVisible} isWin={postResultData?.win} isSpinning={spinning}  />
       <StarButton
         spinning={spinning}
         imgRef={imgRef}

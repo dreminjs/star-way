@@ -11,6 +11,6 @@ export const priseService = {
   async postResult(time: number) :Promise<IPriseResult> {
   
 
-    return (await this.axios.post("/general/check", {time}, {headers: { "user_id": data.user?.id }})).data
+    return (await this.axios.post("/general/check", {time}, {headers: { "user-id": data.user?.id }})).data
   },
 };
