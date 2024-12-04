@@ -21,7 +21,7 @@ export const StarPage = () => {
     usePostResult();
 
   const handleMouseDown = () => {
-    handleHideInfoText()
+
     setSpinning(true);
     setElapsedTime(0);
     setStartTime(0)

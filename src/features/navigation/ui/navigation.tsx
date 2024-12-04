@@ -13,25 +13,25 @@ export const Navigation = () => {
   return (
     <nav className="mt-[80px] w-full">
       <ul className="flex justify-between items-center">
-        <NavItem position={"left"}>
+        <NavItem className="flex justify-center items-center pr-5" position={"left"}>
           {pathname === "/" ? (
-            <img src={MainActive} alt="Main" />
+            <img className="w-[45px] h-[45px]" src={MainActive} alt="Main" />
           ) : (
-            <img src={Main} alt="Main" />
+            <img className="w-[45px] h-[45px]" src={Main} alt="Main" />
           )}
         </NavItem>
-        <NavItem position={"center"}>
+        <NavItem className="flex justify-center items-center" position={"center"}>
           {pathname === "/tasks" ? (
-            <img src={OrdersActive} alt="Main" />
+            <img className="w-[60px]" src={OrdersActive} alt="Main" />
           ) : (
-            <img src={Orders} alt="Main" />
+            <img className="w-[60px]" src={Orders} alt="Main" />
           )}
         </NavItem>
-        <NavItem position={"right"}>
+        <NavItem className="flex justify-center items-center pl-2" position={"right"}>
           {pathname === "/friends" ? (
-            <img src={FriendsActive} alt="Main" />
+            <img className="w-[45px] h-[45px]" src={FriendsActive} alt="Main" />
           ) : (
-            <img src={Friends} alt="Main" />
+            <img className="w-[45px] h-[45px]" src={Friends} alt="Main" />
           )}
         </NavItem>
       </ul>
