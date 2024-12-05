@@ -10,6 +10,7 @@ export const usePostResult = () => {
     isSuccess: postResultSuccess
   } = useMutation({
     mutationFn: (time: number) => priseService.postResult(time),
+      
   });
 
   return {

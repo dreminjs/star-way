@@ -5,8 +5,8 @@ import { usePostResult } from "../../../shared";
 import { Header } from "../../../widgets/header";
 
 export const StarPage = () => {
-  const [spinning, setSpinning] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
+  const [spinning, setSpinning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [startTime, setStartTime] = useState<number | null>(null);
   const intervalRef = useRef<number | null>(null);
@@ -54,6 +54,7 @@ export const StarPage = () => {
       const endTime = Date.now();
       const totalElapsedTime = endTime - startTime;
       setElapsedTime(totalElapsedTime);
+      if(totalElapsedTime > 100)
       postResult(totalElapsedTime);
     }
   };

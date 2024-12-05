@@ -10,6 +10,7 @@ export const useGetTasks = () => {
         data: tasks,
     } = useQuery({
         queryKey: [QUERY_KEYS.tasks],
+        
     })
 
     return {

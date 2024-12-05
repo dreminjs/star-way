@@ -27,7 +27,7 @@ export const Navigation = () => {
             <img className="w-[45px]" src={Orders} alt="Main" />
           )}
         </NavItem>
-        <NavItem className="flex justify-center items-center pl-2" position={"right"}>
+        <NavItem className="flex justify-center items-center w-[110px] pl-5" position={"right"}>
           {pathname === "/friends" ? (
             <img className="w-[35px] h-[35px]" src={FriendsActive} alt="Main" />
           ) : (

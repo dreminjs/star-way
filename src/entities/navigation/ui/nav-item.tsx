@@ -11,7 +11,7 @@ export const NavItem: FC<IProps> = ({ position, children, className }) => {
 
   return (
     <li
-      className={`bg-[url('/src/assets/${position}-nav-item.png')] h-[50px] w-[150px] bg-no-repeat bg-contain ${className} cursor-pointer`}
+      className={`bg-[url('/src/assets/${position}-nav-item.png')] h-[50px] w-[135px] bg-no-repeat bg-contain ${className} cursor-pointer`}
     >
       {children}
     </li>
