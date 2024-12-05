@@ -1,7 +1,7 @@
 import { NavItem } from "../../../entities/navigation";
 import Main from "../../../assets/main.png";
 import MainActive from "../../../assets/main-active.png";
-import Orders from "../../../assets/orders.png";
+import Orders from"../../../assets/orders.png"; ;
 import OrdersActive from "../../../assets/orders-active.png";
 import Friends from "../../../assets/friends.png";
 import FriendsActive from "../../../assets/friend-active.png";
