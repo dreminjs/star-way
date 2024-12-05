@@ -41,14 +41,14 @@ export const StarTitle: FC<IProps> = ({
   useEffect(() => {
     if (isSpinning) {
       setCurrentText("ищу путь домой");
+    } else if (isInfoTextVisible) {
+      setCurrentText(infoMessage[0]);
+      setInfoTextIndex(0);
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
     } else if (isWin) {
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
-    } else if (isInfoTextVisible) {
-      setCurrentText(infoMessage[0]);
-      setInfoTextIndex(0);
     } else {
       setCurrentText("крути меня");
     }
