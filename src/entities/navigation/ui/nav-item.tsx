@@ -1,17 +1,15 @@
 import { FC, ReactNode } from "react";
 
 interface IProps {
-  position: string;
   children: ReactNode;
   className?: string;
 }
 
-export const NavItem: FC<IProps> = ({ position, children, className }) => {
-  console.log(position);
-
+export const NavItem: FC<IProps> = ({ children, className }) => {
+  
   return (
     <li
-      className={`bg-[url('/public/${position}-nav-item.png')] h-[50px] w-[135px] bg-no-repeat bg-contain ${className} cursor-pointer`}
+      className={` h-[50px] w-[135px] bg-no-repeat bg-contain ${className} cursor-pointer`}
     >
       {children}
     </li>
