@@ -90,7 +90,7 @@ export const StarTitle: FC<IProps> = ({
   ]);
 
   return (
-    <h3 className="text-[#ebd0d0] text-center text-3xl w-[350px] h-[100px] mx-auto italic ">
+    <h3 className="text-[#ebd0d0] text-center text-3xl w-[350px] h-[100px] mb-5 mx-auto italic ">
       {displayedText}
     </h3>
   );

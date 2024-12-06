@@ -57,7 +57,7 @@ export const StarPage = () => {
 
   return (
     <section className="flex h-svh flex-col items-center justify-around relative border-2">
-      <div>
+      <div className="w-full">
         <Header onShowInfoText={handleShowInfoText} />
         <StarHeader countTaps={0} seconds={elapsedTime} />
       </div>
