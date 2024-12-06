@@ -10,25 +10,22 @@ export const StarPage = () => {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [startTime, setStartTime] = useState<number | null>(null);
   const intervalRef = useRef<number | null>(null);
-  const [isInfoTextVisible, setIsInfoTextVisible] = useState(false)
+  const [isInfoTextVisible, setIsInfoTextVisible] = useState(false);
 
-  const handleShowInfoText = () => setIsInfoTextVisible(true)
+  const handleShowInfoText = () => setIsInfoTextVisible(true);
 
-  const handleHideInfoText = () => setIsInfoTextVisible(false)
-
+  const handleHideInfoText = () => setIsInfoTextVisible(false);
 
   useEffect(() => {
-    console.log(isInfoTextVisible)
-  },[isInfoTextVisible])
+    console.log(isInfoTextVisible);
+  }, [isInfoTextVisible]);
 
-  const { postResult, postResultData } =
-    usePostResult();
+  const { postResult, postResultData } = usePostResult();
 
   const handleMouseDown = () => {
-
     setSpinning(true);
     setElapsedTime(0);
-    setStartTime(0)
+    setStartTime(0);
     const start = Date.now();
     setStartTime(start);
     setElapsedTime(0);
@@ -41,7 +38,7 @@ export const StarPage = () => {
   };
 
   const handleMouseUp = () => {
-    handleHideInfoText()
+    handleHideInfoText();
     setSpinning(false);
     if (imgRef.current) {
       imgRef.current.style.animationPlayState = "paused";
@@ -54,16 +51,20 @@ export const StarPage = () => {
       const endTime = Date.now();
       const totalElapsedTime = endTime - startTime;
       setElapsedTime(totalElapsedTime);
-      if(totalElapsedTime > 100)
-      postResult(totalElapsedTime);
-    } 
+      if (totalElapsedTime > 100) postResult(totalElapsedTime);
+    }
   };
 
   return (
-    <section className="flex flex-col items-center relative">
+    <section className="flex h-svh flex-col items-center relative">
       <Header onShowInfoText={handleShowInfoText} />
       <StarHeader countTaps={0} seconds={elapsedTime} />
-      <StarTitle isInfoTextVisible={isInfoTextVisible} isWin={postResultData?.win} isSpinning={spinning}  />
+
+      <StarTitle
+        isInfoTextVisible={isInfoTextVisible}
+        isWin={postResultData?.win}
+        isSpinning={spinning}
+      />
       <StarButton
         spinning={spinning}
         imgRef={imgRef}
