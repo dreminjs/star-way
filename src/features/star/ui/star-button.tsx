@@ -16,7 +16,7 @@ export const StarButton: FC<StarButtonProps> = ({
 }) => {
   return (
     <button
-      className="mb-[50px]"
+      className="mb-[150px]"
       onMouseDown={handleMouseDown}
       onTouchStart={handleMouseDown}
       onTouchEnd={handleMouseUp}
@@ -27,7 +27,7 @@ export const StarButton: FC<StarButtonProps> = ({
     >
       <img
         ref={imgRef}
-        className={`w-[262px] spin ${spinning ? "active" : ""}`}
+        className={`w-[292px] spin ${spinning ? "active" : ""}`}
         src={Star}
         alt="Star"
         draggable="false"
