@@ -11,7 +11,7 @@ export const Navigation = () => {
   const pathname = useLocation().pathname;
 
   return (
-    <nav className="w-full">
+    <nav className="w-full mb-[60px]">
       <ul className="flex justify-between items-center bg-cover">
         <NavItem className="flex justify-center items-center pr-10 bg-[url('/public/left-nav-item.png')]">
           {pathname === "/" ? (

@@ -1,5 +1,5 @@
-import { FC, RefObject } from "react";
-import Star from "../../../../src/assets/star.png"; // Убедитесь, что путь к изображению правильный
+import { FC, RefObject, useState } from "react";
+import Star from "../../../../src/assets/star.png";
 
 interface StarButtonProps {
   spinning: boolean;
@@ -14,20 +14,41 @@ export const StarButton: FC<StarButtonProps> = ({
   spinning,
   imgRef,
 }) => {
+  const [reset, setReset] = useState(false);
+  const [isSpinningPossible, setIsSpinningPossible] = useState(true);
+
+  const handleReset = () => {
+    setReset(true);
+    setTimeout(() => setReset(false), 150); 
+  };
+
+  const onMouseUp = () => {
+    handleMouseUp();
+    handleReset();
+    setIsSpinningPossible(false); 
+    setTimeout(() => setIsSpinningPossible(true), 5000);
+  };
+
+  const onMouseDown = () => {
+    if (isSpinningPossible) {
+      handleMouseDown();
+    }
+  };
+
   return (
     <button
       className="block mx-auto"
-      onMouseDown={handleMouseDown}
+      onMouseDown={onMouseDown}
       onTouchStart={handleMouseDown}
-      onTouchEnd={handleMouseUp}
-      onMouseUp={handleMouseUp}
-   
-      onContextMenu={(e) => e.preventDefault()}
-      onTouchMove={(e) => e.preventDefault()}
+      onTouchEnd={onMouseUp}
+      onMouseUp={onMouseUp}
+      onContextMenu={(e) => e.preventDefault()} 
     >
       <img
         ref={imgRef}
-        className={`w-[292px] spin ${spinning ? "active" : ""}`}
+        className={`w-[292px] spin ${spinning ? "active" : ""} ${
+          reset ? "reset" : ""
+        }`}
         src={Star}
         alt="Star"
         draggable="false"

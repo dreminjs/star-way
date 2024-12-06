@@ -11,6 +11,7 @@ export const StarPage = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const intervalRef = useRef<number | null>(null);
   const [isInfoTextVisible, setIsInfoTextVisible] = useState(false);
+ 
 
   const handleShowInfoText = () => setIsInfoTextVisible(true);
 
@@ -42,7 +43,7 @@ export const StarPage = () => {
     setSpinning(false);
     if (imgRef.current) {
       imgRef.current.style.animationPlayState = "paused";
-      imgRef.current.style.transform = "rotate(0deg)"; // Сброс анимации
+      imgRef.current.style.transform = "rotate(0deg)";
     }
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -56,7 +57,9 @@ export const StarPage = () => {
   };
 
   return (
-    <section className="flex h-svh flex-col items-center justify-around relative border-2">
+    <section
+      className="flex h-svh flex-col items-center justify-between relative"
+    >
       <div className="w-full">
         <Header onShowInfoText={handleShowInfoText} />
         <StarHeader countTaps={0} seconds={elapsedTime} />
