@@ -3,7 +3,7 @@ import { Container } from "./container";
 
 export const MainWrapper = () => {
 
-  console.log(window.Telegram.WebApp.viewportHeight)
+  console.log(window.Telegram.WebApp)
 
 
   return (
