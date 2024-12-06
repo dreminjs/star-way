@@ -60,7 +60,7 @@ export const StarPage = () => {
   };
 
   return (
-    <section className="flex flex-col items-center">
+    <section className="flex flex-col items-center relative">
       <Header onShowInfoText={handleShowInfoText} />
       <StarHeader countTaps={0} seconds={elapsedTime} />
       <StarTitle isInfoTextVisible={isInfoTextVisible} isWin={postResultData?.win} isSpinning={spinning}  />
