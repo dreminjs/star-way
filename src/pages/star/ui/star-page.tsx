@@ -56,21 +56,24 @@ export const StarPage = () => {
   };
 
   return (
-    <section className="flex h-svh flex-col items-center relative border-2">
-      <Header onShowInfoText={handleShowInfoText} />
-      <StarHeader countTaps={0} seconds={elapsedTime} />
-
-      <StarTitle
-        isInfoTextVisible={isInfoTextVisible}
-        isWin={postResultData?.win}
-        isSpinning={spinning}
-      />
-      <StarButton
-        spinning={spinning}
-        imgRef={imgRef}
-        handleMouseDown={handleMouseDown}
-        handleMouseUp={handleMouseUp}
-      />
+    <section className="flex h-svh flex-col items-center justify-around relative border-2">
+      <div>
+        <Header onShowInfoText={handleShowInfoText} />
+        <StarHeader countTaps={0} seconds={elapsedTime} />
+      </div>
+      <div>
+        <StarTitle
+          isInfoTextVisible={isInfoTextVisible}
+          isWin={postResultData?.win}
+          isSpinning={spinning}
+        />
+        <StarButton
+          spinning={spinning}
+          imgRef={imgRef}
+          handleMouseDown={handleMouseDown}
+          handleMouseUp={handleMouseUp}
+        />
+      </div>
       <Navigation />
     </section>
   );

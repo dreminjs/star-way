@@ -16,7 +16,7 @@ export const StarButton: FC<StarButtonProps> = ({
 }) => {
   return (
     <button
-      className="mb-[150px]"
+      className="block mx-auto"
       onMouseDown={handleMouseDown}
       onTouchStart={handleMouseDown}
       onTouchEnd={handleMouseUp}
