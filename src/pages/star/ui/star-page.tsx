@@ -56,7 +56,7 @@ export const StarPage = () => {
       setElapsedTime(totalElapsedTime);
       if(totalElapsedTime > 100)
       postResult(totalElapsedTime);
-    }
+    } 
   };
 
   return (

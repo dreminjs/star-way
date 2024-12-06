@@ -7,7 +7,7 @@ export const MainWrapper = () => {
 
 
   return (
-    <div className={`w-full h-[100vh] mx-auto bg-[url('/public/main-bg.png')] bg-no-repeat bg-center bg-cover overflow-hidden`}>
+    <div className={`w-full h-[100svh] mx-auto bg-[url('/public/main-bg.png')] bg-no-repeat bg-center bg-cover overflow-hidden`}>
       
       <Container>
     
