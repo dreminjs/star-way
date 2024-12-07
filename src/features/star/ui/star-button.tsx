@@ -1,4 +1,11 @@
-import { FC, RefObject, useState } from "react";
+import {
+  FC,
+  RefObject,
+  useState,
+  MouseEvent,
+  TouchEvent,
+  TouchEventHandler,
+} from "react";
 import Star from "../../../../src/assets/star.png";
 
 interface StarButtonProps {
@@ -30,7 +37,7 @@ export const StarButton: FC<StarButtonProps> = ({
     setTimeout(() => setIsSpinningPossible(true), 150);
   };
 
-  const onMouseDown = (e) => {
+  const onMouseDown = (e: MouseEvent<HTMLButtonElement>) => {
     console.log(e);
 
     if (isSpinningPossible) {
@@ -38,9 +45,11 @@ export const StarButton: FC<StarButtonProps> = ({
     }
   };
 
-  const onTouchMove = (e: any) => {
+  const onTouchMove = (e) => {
     const touch = e.changedTouches[0];
-    const button = e.target.getBoundingClientRect();
+
+    const target = e.target as HTMLElement;
+    const button = target.getBoundingClientRect();
     if (
       touch.clientX < button.left ||
       touch.clientX > button.right ||
