@@ -1,4 +1,4 @@
-import { FC, RefObject,  useState } from "react";
+import { FC, RefObject, useState } from "react";
 import Star from "../../../../src/assets/star.png";
 
 interface StarButtonProps {
@@ -38,14 +38,17 @@ export const StarButton: FC<StarButtonProps> = ({
 
   return (
     <>
-      <button
-        className="block mx-auto"
-        onMouseDown={onMouseDown}
-        onTouchStart={onMouseDown}
-        onTouchEnd={onMouseUp}
-        onMouseUp={onMouseUp}
-        onContextMenu={(e) => e.preventDefault()}
-      >
+      <div className="mx-auto flex justify-center relative">
+        <button
+          onMouseDown={onMouseDown}
+          onTouchStart={onMouseDown}
+          onTouchEnd={onMouseUp}
+          onMouseUp={onMouseUp}
+          onContextMenu={(e) => e.preventDefault()}
+          className="bg-transparent absolute  border-2 z-10 h-[45px] w-[45px] top-[calc(50%-20px)] left-[calc(50%-22.5px)]"
+        >
+          12
+        </button>
         <img
           ref={imgRef}
           className={`w-[292px] spin ${spinning ? "active" : ""} ${
@@ -56,7 +59,7 @@ export const StarButton: FC<StarButtonProps> = ({
           draggable="false"
           onContextMenu={(e) => e.preventDefault()}
         />
-      </button>
+      </div>
     </>
   );
 };
