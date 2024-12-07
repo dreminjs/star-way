@@ -47,6 +47,7 @@ export const StarPage = () => {
     }
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
     if (startTime !== null) {
       const endTime = Date.now();
