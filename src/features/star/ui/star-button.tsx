@@ -18,8 +18,21 @@ export const StarButton: FC<StarButtonProps> = ({
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio(spinningSound);
+    const audio = new Audio(spinningSound);
+    audioRef.current = audio;
+
+    const handleAudioEnd = () => {
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+        audioRef.current
+          .play()
+          .catch((err) => console.error("Error playing audio:", err));
+      }
+    };
+    audio.addEventListener("ended", handleAudioEnd);
+
     return () => {
+      audio.removeEventListener("ended", handleAudioEnd);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
