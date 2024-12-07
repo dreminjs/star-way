@@ -28,26 +28,26 @@ export const StarButton: FC<StarButtonProps> = ({
     setReset(true);
     setTimeout(() => setReset(false), 150);
   };
-
   const onMouseUp = () => {
     handleMouseUp();
     handleReset();
     setIsSpinningPossible(false);
-
     setTimeout(() => setIsSpinningPossible(true), 150);
   };
-
-  const onMouseDown = (e) => {
+  const onMouseDown = (e: MouseEvent<HTMLButtonElement>) => {
     console.log(e);
-
     if (isSpinningPossible) {
       handleMouseDown();
     }
   };
-
-  const onTouchMove = (e) => {
+  const onTouchStart = (e: TouchEvent<HTMLButtonElement>) => {
+    console.log(e);
+    if (isSpinningPossible) {
+      handleMouseDown();
+    }
+  };
+  const onTouchMove = (e: TouchEvent<HTMLButtonElement>) => {
     const touch = e.changedTouches[0];
-
     const target = e.target as HTMLElement;
     const button = target.getBoundingClientRect();
     if (
@@ -65,7 +65,7 @@ export const StarButton: FC<StarButtonProps> = ({
       <div className="mx-auto flex justify-center relative">
         <button
           onMouseDown={onMouseDown}
-          onTouchStart={onMouseDown}
+          onTouchStart={onTouchStart}
           onTouchEnd={onMouseUp}
           onMouseUp={onMouseUp}
           onTouchMove={onTouchMove}
