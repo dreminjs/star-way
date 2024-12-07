@@ -1,4 +1,4 @@
-import { FC, RefObject, useEffect, useRef, useState } from "react";
+import { FC, RefObject,  useState } from "react";
 import Star from "../../../../src/assets/star.png";
 import spinningSound from "../../../../public/spinning-sound.mp3";
 
@@ -17,9 +17,6 @@ export const StarButton: FC<StarButtonProps> = ({
 }) => {
   const [reset, setReset] = useState(false);
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
-  const audio = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {}, []);
 
   const handleReset = () => {
     setReset(true);
@@ -30,43 +27,37 @@ export const StarButton: FC<StarButtonProps> = ({
     handleMouseUp();
     handleReset();
     setIsSpinningPossible(false);
-    audio.current?.pause();
+
     setTimeout(() => setIsSpinningPossible(true), 150);
   };
 
   const onMouseDown = () => {
-    const newAudio = new Audio(spinningSound);
-    newAudio.loop = true;
-    audio.current = newAudio;
-    
-    if (isSpinningPossible && audio) {
+    if (isSpinningPossible) {
       handleMouseDown();
-      audio.current?.load();
-      audio.current?.play().catch((error) => {
-        console.error("Error playing sound:", error);
-      });
     }
   };
 
   return (
-    <button
-      className="block mx-auto"
-      onMouseDown={onMouseDown}
-      onTouchStart={onMouseDown}
-      onTouchEnd={onMouseUp}
-      onMouseUp={onMouseUp}
-      onContextMenu={(e) => e.preventDefault()}
-    >
-      <img
-        ref={imgRef}
-        className={`w-[292px] spin ${spinning ? "active" : ""} ${
-          reset ? "reset" : ""
-        }`}
-        src={Star}
-        alt="Star"
-        draggable="false"
+    <>
+      <button
+        className="block mx-auto"
+        onMouseDown={onMouseDown}
+        onTouchStart={onMouseDown}
+        onTouchEnd={onMouseUp}
+        onMouseUp={onMouseUp}
         onContextMenu={(e) => e.preventDefault()}
-      />
-    </button>
+      >
+        <img
+          ref={imgRef}
+          className={`w-[292px] spin ${spinning ? "active" : ""} ${
+            reset ? "reset" : ""
+          }`}
+          src={Star}
+          alt="Star"
+          draggable="false"
+          onContextMenu={(e) => e.preventDefault()}
+        />
+      </button>
+    </>
   );
 };
