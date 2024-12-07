@@ -92,7 +92,7 @@ export const StarTitle: FC<IProps> = ({
   return (
     <h3
       onCopy={(e) => e.preventDefault()}
-      className="text-[#ebd0d0] text-center text-3xl w-[350px] h-[130px] mb-3 mx-auto italic "
+      className="text-[#ebd0d0] text-center text-3xl w-[350px] h-[90px] mb-2 mx-auto italic "
     >
       {displayedText}
     </h3>
