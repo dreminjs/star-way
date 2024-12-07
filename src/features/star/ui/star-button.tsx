@@ -15,65 +15,11 @@ export const StarButton: FC<StarButtonProps> = ({
   spinning,
   imgRef,
 }) => {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    const audio = new Audio(spinningSound);
-    audioRef.current = audio;
-
-    const handleAudioEnd = () => {
-      if (audioRef.current) {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play().catch((err) =>
-          console.error("Error playing audio:", err)
-        );
-      }
-    };
-
-    audio.addEventListener("ended", handleAudioEnd);
-
-    return () => {
-      audio.removeEventListener("ended", handleAudioEnd);
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
-
-  const [isAudioInitialized, setAudioInitialized] = useState(false);
-
-  const initializeAudio = () => {
-    if (audioRef.current && !isAudioInitialized) {
-      audioRef.current.play().catch((err) =>
-        console.error("Initial play error:", err)
-      );
-      setAudioInitialized(true);
-    }
-  };
-
-  const playSound = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0; // Сброс к началу
-      audioRef.current
-        .play()
-        .then(() => {
-          console.log("Audio is playing");
-        })
-        .catch((err) => {
-          console.error("Audio play error:", err);
-        });
-    }
-  };
-
-  const stopSound = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
-  };
-
   const [reset, setReset] = useState(false);
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
+  const audio = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {}, []);
 
   const handleReset = () => {
     setReset(true);
@@ -83,16 +29,22 @@ export const StarButton: FC<StarButtonProps> = ({
   const onMouseUp = () => {
     handleMouseUp();
     handleReset();
-    stopSound();
     setIsSpinningPossible(false);
-    setTimeout(() => setIsSpinningPossible(true), 5000);
+    audio.current?.pause();
+    setTimeout(() => setIsSpinningPossible(true), 150);
   };
 
   const onMouseDown = () => {
-    initializeAudio(); // Убедимся, что аудио инициализировано при первом взаимодействии
-    if (isSpinningPossible) {
+    const newAudio = new Audio(spinningSound);
+    newAudio.loop = true;
+    audio.current = newAudio;
+    
+    if (isSpinningPossible && audio) {
       handleMouseDown();
-      playSound();
+      audio.current?.load();
+      audio.current?.play().catch((error) => {
+        console.error("Error playing sound:", error);
+      });
     }
   };
 
