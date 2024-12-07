@@ -24,11 +24,12 @@ export const StarButton: FC<StarButtonProps> = ({
     const handleAudioEnd = () => {
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
-        audioRef.current
-          .play()
-          .catch((err) => console.error("Error playing audio:", err));
+        audioRef.current.play().catch((err) =>
+          console.error("Error playing audio:", err)
+        );
       }
     };
+
     audio.addEventListener("ended", handleAudioEnd);
 
     return () => {
@@ -39,6 +40,17 @@ export const StarButton: FC<StarButtonProps> = ({
       }
     };
   }, []);
+
+  const [isAudioInitialized, setAudioInitialized] = useState(false);
+
+  const initializeAudio = () => {
+    if (audioRef.current && !isAudioInitialized) {
+      audioRef.current.play().catch((err) =>
+        console.error("Initial play error:", err)
+      );
+      setAudioInitialized(true);
+    }
+  };
 
   const playSound = () => {
     if (audioRef.current) {
@@ -73,10 +85,11 @@ export const StarButton: FC<StarButtonProps> = ({
     handleReset();
     stopSound();
     setIsSpinningPossible(false);
-    setTimeout(() => setIsSpinningPossible(true), 100);
+    setTimeout(() => setIsSpinningPossible(true), 5000);
   };
 
   const onMouseDown = () => {
+    initializeAudio(); // Убедимся, что аудио инициализировано при первом взаимодействии
     if (isSpinningPossible) {
       handleMouseDown();
       playSound();
@@ -87,7 +100,7 @@ export const StarButton: FC<StarButtonProps> = ({
     <button
       className="block mx-auto"
       onMouseDown={onMouseDown}
-      onTouchStart={onMouseDown} // Убедитесь, что Touch-событие тоже вызывает playSound
+      onTouchStart={onMouseDown}
       onTouchEnd={onMouseUp}
       onMouseUp={onMouseUp}
       onContextMenu={(e) => e.preventDefault()}
