@@ -1,6 +1,5 @@
 import { FC, RefObject,  useState } from "react";
 import Star from "../../../../src/assets/star.png";
-import spinningSound from "../../../../public/spinning-sound.mp3";
 
 interface StarButtonProps {
   spinning: boolean;
