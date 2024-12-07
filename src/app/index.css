@@ -29,7 +29,6 @@
 .spin.reset {
     animation: none;
     transform: rotate(0deg);
-    transition: transform 1s ease-out;
 }
 
 img {

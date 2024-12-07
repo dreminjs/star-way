@@ -15,15 +15,11 @@ export const StarButton: FC<StarButtonProps> = ({
   spinning,
   imgRef,
 }) => {
-
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     audioRef.current = new Audio(spinningSound);
     return () => {
-      // Очистка: остановить звук, если компонент размонтируется
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -32,12 +28,22 @@ export const StarButton: FC<StarButtonProps> = ({
   }, []);
 
   const playSound = () => {
-    if (audioRef.current && isPlaying) {
-      audioRef.current.currentTime = 0; // Сброс звука
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0; // Сброс к началу
       audioRef.current
         .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => console.error("Audio play error:", err));
+        .then(() => {
+          console.log("Audio is playing");
+        })
+        .catch((err) => {
+          console.error("Audio play error:", err);
+        });
+    }
+  };
+
+  const stopSound = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
     }
   };
 
@@ -52,14 +58,15 @@ export const StarButton: FC<StarButtonProps> = ({
   const onMouseUp = () => {
     handleMouseUp();
     handleReset();
+    stopSound();
     setIsSpinningPossible(false);
-    setTimeout(() => setIsSpinningPossible(true), 5000);
+    setTimeout(() => setIsSpinningPossible(true), 100);
   };
 
   const onMouseDown = () => {
-    playSound();
     if (isSpinningPossible) {
       handleMouseDown();
+      playSound();
     }
   };
 
@@ -67,7 +74,7 @@ export const StarButton: FC<StarButtonProps> = ({
     <button
       className="block mx-auto"
       onMouseDown={onMouseDown}
-      onTouchStart={handleMouseDown}
+      onTouchStart={onMouseDown} // Убедитесь, что Touch-событие тоже вызывает playSound
       onTouchEnd={onMouseUp}
       onMouseUp={onMouseUp}
       onContextMenu={(e) => e.preventDefault()}
