@@ -34,6 +34,7 @@ export const StarButton: FC<StarButtonProps> = ({
     setIsSpinningPossible(false);
     setTimeout(() => setIsSpinningPossible(true), 150);
   };
+  
   const onMouseDown = (e: MouseEvent<HTMLButtonElement>) => {
     console.log(e);
     if (isSpinningPossible) {
