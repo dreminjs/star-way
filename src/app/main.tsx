@@ -8,6 +8,17 @@ import { PAGE_URLS } from "../shared/model/constants";
 import { StarPage } from "../pages/star";
 import { TasksPage } from "../pages/tasks/ui/tasks-page";
 
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden) {
+    console.log('Приложение свернуто');
+    // Ваш код для обработки сворачивания
+  } else {
+    console.log('Приложение активно');
+    // Ваш код для обработки активации
+  }
+});
+
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
