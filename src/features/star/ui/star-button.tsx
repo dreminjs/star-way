@@ -4,7 +4,7 @@ import {
   useState,
   MouseEvent,
   TouchEvent,
-  TouchEventHandler,
+
 } from "react";
 import Star from "../../../../src/assets/star.png";
 
