@@ -40,7 +40,7 @@ export const StarTitle: FC<IProps> = ({
 
   useEffect(() => {
     if (isSpinning) {
-      setCurrentText("ищу путь домой");
+      setCurrentText("держи меня , летим домой");
     } else if (isInfoTextVisible) {
       setCurrentText(infoMessage[0]);
       setInfoTextIndex(0);

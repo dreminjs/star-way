@@ -2,50 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 .header__title-gradient {
-  background: linear-gradient(to bottom, white, rgb(99, 104, 172));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    background: linear-gradient(to bottom, white, rgb(99, 104, 172));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .spin {
-  animation: spin 0.5s linear infinite;
-  animation-play-state: paused;
-  transition: animation-play-state 0.8s ease-out;
+    animation: spin 0.5s linear infinite;
+    animation-play-state: paused;
+    transition: animation-play-state 0.8s ease-out;
 }
 
 .spin.active {
-  animation-play-state: running;
+    animation-play-state: running;
 }
 
 .spin.reset {
     animation: none;
     transform: rotate(0deg);
-    transition: transform 0.8s ease-out;
-  }
-
+    transition: transform 1s ease-out;
+}
 
 img {
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  touch-action: none;
-  pointer-events: none;
-  /* Отключаем жесты на мобильных устройствах */
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: none;
+    pointer-events: none;
+    /* Отключаем жесты на мобильных устройствах */
 }
 
 .gradient-numbers {
-  background: linear-gradient(to top, #ff4500, #ffa500);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    background: linear-gradient(to top, #ff4500, #ffa500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

@@ -1,5 +1,6 @@
-import { FC, RefObject, useState } from "react";
+import { FC, RefObject, useEffect, useRef, useState } from "react";
 import Star from "../../../../src/assets/star.png";
+import spinningSound from "../../../../public/spinning-sound.mp3";
 
 interface StarButtonProps {
   spinning: boolean;
@@ -14,22 +15,49 @@ export const StarButton: FC<StarButtonProps> = ({
   spinning,
   imgRef,
 }) => {
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    audioRef.current = new Audio(spinningSound);
+    return () => {
+      // Очистка: остановить звук, если компонент размонтируется
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const playSound = () => {
+    if (audioRef.current && isPlaying) {
+      audioRef.current.currentTime = 0; // Сброс звука
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => console.error("Audio play error:", err));
+    }
+  };
+
   const [reset, setReset] = useState(false);
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
 
   const handleReset = () => {
     setReset(true);
-    setTimeout(() => setReset(false), 150); 
+    setTimeout(() => setReset(false), 150);
   };
 
   const onMouseUp = () => {
     handleMouseUp();
     handleReset();
-    setIsSpinningPossible(false); 
+    setIsSpinningPossible(false);
     setTimeout(() => setIsSpinningPossible(true), 5000);
   };
 
   const onMouseDown = () => {
+    playSound();
     if (isSpinningPossible) {
       handleMouseDown();
     }
@@ -42,7 +70,7 @@ export const StarButton: FC<StarButtonProps> = ({
       onTouchStart={handleMouseDown}
       onTouchEnd={onMouseUp}
       onMouseUp={onMouseUp}
-      onContextMenu={(e) => e.preventDefault()} 
+      onContextMenu={(e) => e.preventDefault()}
     >
       <img
         ref={imgRef}
