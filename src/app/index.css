@@ -18,10 +18,10 @@
     
     @keyframes decelerate {
         from {
-            transform: rotate(360deg);
+            transform: rotate(0deg);
         }
         to {
-            transform: rotate(0deg);
+            transform: rotate(360deg);
         }
     }
     
@@ -36,7 +36,7 @@
     }
     
     .spin.reset {
-        animation: decelerate 0.5s linear;
+        animation: decelerate 0.8s linear forwards;
     }
     
     img {
