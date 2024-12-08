@@ -7,7 +7,7 @@ interface IProps {
 export const Container: FC<IProps> = ({ children }) => {
   const queryClient = new QueryClient();
   return (
-    <div className="p-2 w-full mx-auto h-svh" >
+    <div className="p-2 max-w-[500px] mx-auto h-svh" >
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </div>
   );
