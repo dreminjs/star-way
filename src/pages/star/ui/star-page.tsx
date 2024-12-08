@@ -22,6 +22,12 @@ export const StarPage = () => {
 
   const { postResult, postResultData } = usePostResult();
 
+  useEffect(() => {
+    if (!spinning &&  intervalRef.current) {
+     clearInterval(intervalRef.current);
+    }
+  }, [spinning]);
+
   const handleMouseDown = () => {
     setSpinning(true);
     setElapsedTime(0);
