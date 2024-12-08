@@ -90,7 +90,7 @@ export const StarButton: FC<StarButtonProps> = ({
       ></button>
       <img
         ref={imgRef}
-        className={`w-[350px] spin ${spinning ? "active" : ""} ${
+        className={`w-[310px] spin ${spinning ? "active" : ""} ${
           reset ? "reset" : ""
         }`}
         src={Star}
