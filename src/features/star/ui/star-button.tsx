@@ -1,4 +1,4 @@
-import { FC, RefObject, useState, TouchEvent } from "react";
+import { FC, RefObject, useState, TouchEvent, MouseEvent } from "react";
 import Star from "../../../../src/assets/star.png";
 interface StarButtonProps {
   spinning: boolean;
@@ -59,10 +59,28 @@ export const StarButton: FC<StarButtonProps> = ({
     }
   };
 
+  const onMouseMove = (e: MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLElement;
+    const button = target.getBoundingClientRect();
+  
+    if (
+      e.clientX < button.left ||
+      e.clientX > button.right ||
+      e.clientY < button.top ||
+      e.clientY > button.bottom
+    ) {
+      onMouseUp(); // Остановка вращения
+      setTimeout(() => setIsSpinningPossible(true), 150); // Разблокировка
+    }
+  };
+
+
+
   return (
     <div className="mx-auto flex justify-center relative">
       <button
         onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
         onTouchStart={onTouchStart}
         onTouchEnd={onMouseUp}
         onMouseUp={onMouseUp}
