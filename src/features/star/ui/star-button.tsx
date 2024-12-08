@@ -57,7 +57,7 @@ export const StarButton: FC<StarButtonProps> = ({
       touch.clientY < button.top ||
       touch.clientY > button.bottom
     ) {
-      onMouseUp();
+      handleMouseUp()
     }
   };
 
