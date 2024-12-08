@@ -38,7 +38,7 @@ export const StarButton: FC<StarButtonProps> = ({
     if (isSpinningPossible) {
       handleMouseDown();
       if (imgRef.current) {
-        imgRef.current.style.animation = "spin 0.8s linear infinite";
+        imgRef.current.style.animation = "spin 0.6s linear infinite";
       }
     }
   };
