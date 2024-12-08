@@ -23,23 +23,18 @@ export const StarPage = () => {
     setElapsedTime(0);
     const start = Date.now();
     setStartTime(start);
-    if (imgRef.current) {
-      imgRef.current.style.animationPlayState = "running";
-    }
     intervalRef.current = window.setInterval(() => {
       setElapsedTime(Date.now() - start);
     }, 1);
   };
 
   const handleMouseUp = () => {
+    setSpinning(false);
+  
     if (startTime !== null && intervalRef.current !== null && imgRef.current) {
       handleHideInfoText();
-      setSpinning(false);
-
-      imgRef.current.style.animationPlayState = "paused";
-      imgRef.current.style.transform = "rotate(0deg)";
       clearInterval(intervalRef.current);
-      intervalRef.current = null; // Сброс значения intervalRef.current
+      intervalRef.current = null;
       const endTime = Date.now();
       const totalElapsedTime = endTime - startTime;
       setElapsedTime(totalElapsedTime);
@@ -70,6 +65,3 @@ export const StarPage = () => {
     </section>
   );
 };
-
-
-

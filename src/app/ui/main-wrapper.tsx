@@ -11,11 +11,11 @@ export const MainWrapper = () => {
   useEffect(() => {
     const imageTimer = setTimeout(() => {
       setCurrentImage(SecondLoadingImg);
-    }, 7000); // Переключить изображение через 1.5 секунды
+    }, 1000); // Переключить изображение через 1.5 секунды
 
     const splashTimer = setTimeout(() => {
       setShowSplash(false);
-    }, 13000); // Скрыть картинку через 3 секунды
+    }, 1000); // Скрыть картинку через 3 секунды
 
     return () => {
       clearTimeout(imageTimer);

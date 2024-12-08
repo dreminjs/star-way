@@ -1,4 +1,4 @@
-import { FC, RefObject, useState, MouseEvent, TouchEvent } from "react";
+import { FC, RefObject, useState, TouchEvent } from "react";
 import Star from "../../../../src/assets/star.png";
 interface StarButtonProps {
   spinning: boolean;
@@ -14,41 +14,36 @@ export const StarButton: FC<StarButtonProps> = ({
 }) => {
   const [reset, setReset] = useState(false);
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
+
+  // Функция для сброса состояния
   const handleReset = () => {
     setReset(true);
-    setTimeout(() => setReset(false), 150);
+    setTimeout(() => setReset(false), 1000); // Сброс через 1 секунду (длительность анимации)
   };
+
   const onMouseUp = () => {
     handleMouseUp();
-    handleReset();
+    handleReset(); // Сброс анимации
     setIsSpinningPossible(false);
-    if (imgRef.current) {
-      imgRef.current.style.animation =
-        "spin 0.8s linear infinite, decelerate 1s ease-out";
-      setTimeout(() => {
-        imgRef.current!.style.animation = "none";
-      }, 1000);
-    }
-    setTimeout(() => setIsSpinningPossible(true), 150);
+    setTimeout(() => setIsSpinningPossible(true), 150); // Блокировка повторного запуска на 150 мс
   };
-  const onMouseDown = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log(e);
+
+  const onMouseDown = () => {
     if (isSpinningPossible) {
       handleMouseDown();
       if (imgRef.current) {
-        imgRef.current.style.animation = "spin 0.6s linear infinite";
+        imgRef.current.classList.add("active");
       }
     }
   };
-  const onTouchStart = (e: TouchEvent<HTMLButtonElement>) => {
-    console.log(e);
-    if (isSpinningPossible) {
+
+  const onTouchStart = () => {
+    if (isSpinningPossible && imgRef.current) {
       handleMouseDown();
-      if (imgRef.current) {
-        imgRef.current.style.animation = "spin 0.8s linear infinite";
-      }
+      imgRef.current.classList.add("active");
     }
   };
+
   const onTouchMove = (e: TouchEvent<HTMLButtonElement>) => {
     const touch = e.changedTouches[0];
     const target = e.target as HTMLElement;
@@ -59,12 +54,13 @@ export const StarButton: FC<StarButtonProps> = ({
       touch.clientY < button.top ||
       touch.clientY > button.bottom
     ) {
-      onMouseUp();
+      onMouseUp(); // Остановка вращения
+      setTimeout(() => setIsSpinningPossible(true), 150); // Разблокировка
     }
   };
+
   return (
     <div className="mx-auto flex justify-center relative">
-      {" "}
       <button
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}
@@ -73,7 +69,7 @@ export const StarButton: FC<StarButtonProps> = ({
         onTouchMove={onTouchMove}
         onContextMenu={(e) => e.preventDefault()}
         className="bg-transparent absolute z-10 h-[45px] w-[45px] top-[calc(50%-20px)] left-[calc(50%-22.5px)]"
-      ></button>{" "}
+      ></button>
       <img
         ref={imgRef}
         className={`w-[292px] spin ${spinning ? "active" : ""} ${
@@ -83,7 +79,7 @@ export const StarButton: FC<StarButtonProps> = ({
         alt="Star"
         draggable="false"
         onContextMenu={(e) => e.preventDefault()}
-      />{" "}
+      />
     </div>
   );
 };
