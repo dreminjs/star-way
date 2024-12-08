@@ -1,11 +1,4 @@
-import {
-  FC,
-  RefObject,
-  useState,
-  MouseEvent,
-  TouchEvent,
-
-} from "react";
+import { FC, RefObject, useState, MouseEvent, TouchEvent } from "react";
 import Star from "../../../../src/assets/star.png";
 
 interface StarButtonProps {
@@ -23,7 +16,6 @@ export const StarButton: FC<StarButtonProps> = ({
 }) => {
   const [reset, setReset] = useState(false);
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
-
   const handleReset = () => {
     setReset(true);
     setTimeout(() => setReset(false), 150);
@@ -32,19 +24,31 @@ export const StarButton: FC<StarButtonProps> = ({
     handleMouseUp();
     handleReset();
     setIsSpinningPossible(false);
+    if (imgRef.current) {
+      imgRef.current.style.animation =
+        "spin 0.8s linear infinite, decelerate 1s ease-out";
+      setTimeout(() => {
+        imgRef.current!.style.animation = "none";
+      }, 1000);
+    }
     setTimeout(() => setIsSpinningPossible(true), 150);
   };
-  
   const onMouseDown = (e: MouseEvent<HTMLButtonElement>) => {
     console.log(e);
     if (isSpinningPossible) {
       handleMouseDown();
+      if (imgRef.current) {
+        imgRef.current.style.animation = "spin 0.8s linear infinite";
+      }
     }
   };
   const onTouchStart = (e: TouchEvent<HTMLButtonElement>) => {
     console.log(e);
     if (isSpinningPossible) {
       handleMouseDown();
+      if (imgRef.current) {
+        imgRef.current.style.animation = "spin 0.8s linear infinite";
+      }
     }
   };
   const onTouchMove = (e: TouchEvent<HTMLButtonElement>) => {
@@ -57,13 +61,14 @@ export const StarButton: FC<StarButtonProps> = ({
       touch.clientY < button.top ||
       touch.clientY > button.bottom
     ) {
-      handleMouseUp()
+      onMouseUp();
     }
   };
-
   return (
     <>
+      {" "}
       <div className="mx-auto flex justify-center relative">
+        {" "}
         <button
           onMouseDown={onMouseDown}
           onTouchStart={onTouchStart}
@@ -72,7 +77,7 @@ export const StarButton: FC<StarButtonProps> = ({
           onTouchMove={onTouchMove}
           onContextMenu={(e) => e.preventDefault()}
           className="bg-transparent absolute z-10 h-[45px] w-[45px] top-[calc(50%-20px)] left-[calc(50%-22.5px)]"
-        ></button>
+        ></button>{" "}
         <img
           ref={imgRef}
           className={`w-[292px] spin ${spinning ? "active" : ""} ${
@@ -82,8 +87,8 @@ export const StarButton: FC<StarButtonProps> = ({
           alt="Star"
           draggable="false"
           onContextMenu={(e) => e.preventDefault()}
-        />
-      </div>
+        />{" "}
+      </div>{" "}
     </>
   );
 };
