@@ -18,6 +18,8 @@ document.addEventListener('visibilitychange', function() {
   }
 });
 
+Telegram.WebApp.disableVerticalSwipes()
+
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

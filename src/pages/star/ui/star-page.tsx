@@ -45,10 +45,7 @@ export const StarPage = () => {
       imgRef.current.style.animationPlayState = "paused";
       imgRef.current.style.transform = "rotate(0deg)";
     }
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
+    
     if (startTime !== null) {
       const endTime = Date.now();
       const totalElapsedTime = endTime - startTime;
