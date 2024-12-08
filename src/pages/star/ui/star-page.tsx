@@ -25,6 +25,8 @@ export const StarPage = () => {
   useEffect(() => {
     if (!spinning &&  intervalRef.current) {
      clearInterval(intervalRef.current);
+     const start = Date.now();
+     setElapsedTime(Date.now() - start);
     }
   }, [spinning]);
 
