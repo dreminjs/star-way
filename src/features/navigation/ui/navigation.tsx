@@ -37,7 +37,7 @@ export const Navigation = () => {
           )}
         </NavItem>
       </ul>
-        <Link className="flex mx-auto justify-center items-center gap-2" to="t.me/EventStark">
+        <Link className="flex mx-auto justify-center items-center gap-2" to="https://t.me/EventStark">
             <img className="h-[30px]" src={Gaiki} alt="" />
             <img className="h-[30px]" src={VersionBeta} alt="" />
         </Link>
