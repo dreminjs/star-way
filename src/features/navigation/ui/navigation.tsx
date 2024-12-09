@@ -7,6 +7,7 @@ import Friends from "../../../assets/friends.png";
 import FriendsActive from "../../../assets/friend-active.png";
 import { useLocation } from "react-router-dom";
 
+
 export const Navigation = () => {
   const pathname = useLocation().pathname;
 
@@ -35,6 +36,7 @@ export const Navigation = () => {
           )}
         </NavItem>
       </ul>
+    
     </nav>
   );
 };

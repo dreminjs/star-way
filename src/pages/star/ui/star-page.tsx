@@ -3,6 +3,7 @@ import { StarButton, StarHeader, StarTitle } from "../../../features/star";
 import { Navigation } from "../../../features/navigation";
 import { usePostResult } from "../../../shared";
 import { Header } from "../../../widgets/header";
+import { useGetUserData } from "../../../shared/api/queries/user.queries";
 
 export const StarPage = () => {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -17,6 +18,8 @@ export const StarPage = () => {
   const handleHideInfoText = () => setIsInfoTextVisible(false);
 
   const { postResult, postResultData } = usePostResult();
+
+  const {} = useGetUserData()
 
   const handleMouseDown = () => {
     setSpinning(true);
