@@ -5,15 +5,16 @@ import Orders from"../../../assets/orders.png"; ;
 import OrdersActive from "../../../assets/orders-active.png";
 import Friends from "../../../assets/friends.png";
 import FriendsActive from "../../../assets/friend-active.png";
-import { useLocation } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
+import Gaiki from "../../../assets/gaiki.png";
+import VersionBeta from "../../../assets/version-beta.png"; 
 
 export const Navigation = () => {
   const pathname = useLocation().pathname;
 
   return (
-    <nav className="w-full mb-[60px]">
-      <ul className="flex justify-between items-center bg-cover">
+    <nav className="w-full mb-[45px]">
+      <ul className="flex justify-between items-center bg-cover mb-3">
         <NavItem className="flex justify-center items-center pr-10 bg-[url('/public/left-nav-item.png')]">
           {pathname === "/" ? (
             <img className="w-[40px] h-[40px]" src={MainActive} alt="Main" />
@@ -36,7 +37,10 @@ export const Navigation = () => {
           )}
         </NavItem>
       </ul>
-    
+        <Link className="flex mx-auto justify-center items-center gap-2" to="t.me/EventStark">
+            <img className="h-[30px]" src={Gaiki} alt="" />
+            <img className="h-[30px]" src={VersionBeta} alt="" />
+        </Link>
     </nav>
   );
 };

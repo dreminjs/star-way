@@ -86,7 +86,7 @@ export const StarButton: FC<StarButtonProps> = ({
         onMouseUp={onMouseUp}
         onTouchMove={onTouchMove}
         onContextMenu={(e) => e.preventDefault()}
-        className="bg-transparent absolute z-10 h-[10vw] w-[10vw] top-[calc(50%-20px)] left-[calc(50%-22.5px)]"
+        className="bg-transparent absolute z-10 h-[12vw] border-2 w-[12vw] top-[calc(50%-10px)] left-[calc(50%-25.5px)]"
       ></button>
       <img
         ref={imgRef}
