@@ -14,7 +14,7 @@ export const Navigation = () => {
 
   return (
     <nav className="w-full mb-[45px]">
-      <ul className="flex justify-between items-center bg-cover mb-3">
+      <ul className="flex justify-between items-center bg-cover mb-5">
         <NavItem className="flex justify-center items-center pr-10 bg-[url('/public/left-nav-item.png')]">
           {pathname === "/" ? (
             <img className="w-[40px] h-[40px]" src={MainActive} alt="Main" />
