@@ -6,6 +6,7 @@ interface IProps {
 
 export const CoinsCount: FC<IProps> = ({ coins }) => {
   const [previousCoins, setPreviousCoins] = useState(coins);
+  const [displayedCoins, setDisplayedCoins] = useState(coins);
   const [addedCoins, setAddedCoins] = useState(0);
   const [showAddedCoins, setShowAddedCoins] = useState(false);
 
@@ -14,6 +15,18 @@ export const CoinsCount: FC<IProps> = ({ coins }) => {
       const difference = coins - previousCoins;
       setAddedCoins(difference);
       setShowAddedCoins(true);
+
+      const increment = difference / 20; // Количество шагов для анимации
+      let currentCoins = previousCoins;
+      const interval = setInterval(() => {
+        currentCoins += increment;
+        if ((difference > 0 && currentCoins >= coins) || (difference < 0 && currentCoins <= coins)) {
+          clearInterval(interval);
+          setDisplayedCoins(coins);
+        } else {
+          setDisplayedCoins(Math.round(currentCoins));
+        }
+      }, 50); // Интервал в миллисекундах
 
       const timer = setTimeout(() => {
         setShowAddedCoins(false);
@@ -25,28 +38,26 @@ export const CoinsCount: FC<IProps> = ({ coins }) => {
       }, 2000);
 
       return () => {
+        clearInterval(interval);
         clearTimeout(timer);
         clearTimeout(updateTimer);
       };
     }
   }, [coins, previousCoins]);
 
-  const formattedCoins = coins.toString().padStart(5, "0");
+  const formattedCoins = displayedCoins.toString().padStart(5, "0");
   const formattedAddedCoins = addedCoins > 0 ? `+${addedCoins}` : "";
 
   return (
     <div className="relative text-center">
-      {" "}
       <p className="text-[35px] gradient-numbers font-bold gradient-coins">
-        {" "}
-        {formattedCoins}{" "}
-      </p>{" "}
+        {formattedCoins}
+      </p>
       {showAddedCoins && (
-        <p className="absolute top-2 right-[80px] text-[20px] text-yellow-500 font-bold animate-fade-out">
-          {" "}
-          {formattedAddedCoins}{" "}
+        <p className="absolute top-0 left-[80px] text-[20px] text-yellow-500 font-bold animate-fade-out">
+          {formattedAddedCoins}
         </p>
-      )}{" "}
+      )}
     </div>
   );
 };
