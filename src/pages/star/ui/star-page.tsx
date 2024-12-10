@@ -67,6 +67,7 @@ export const StarPage = () => {
       </div>
       <div>
         <StarTitle
+          isLoading={postResultLoading}
           isWin={postResultData?.win}
           isSpinning={spinning}
         />

@@ -4,9 +4,10 @@ interface IProps {
   isSpinning: boolean;
   isWin?: boolean;
   delay?: number;
+  isLoading: boolean
 }
 
-export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100 }) => {
+export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100,isLoading }) => {
   const [displayedText, setDisplayedText] = useState("крути меня");
   const [letterIndex, setLetterIndex] = useState(0);
   const [currentText, setCurrentText] = useState("крути меня");
@@ -19,7 +20,9 @@ export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100 }) => {
   ];
 
   useEffect(() => {
-    if (isSpinning) {
+    if (isLoading) {
+      setCurrentText("ищу путь...");
+    } else if (isSpinning) {
       setCurrentText("держи меня , летим домой");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
