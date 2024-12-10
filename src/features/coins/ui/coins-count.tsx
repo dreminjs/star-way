@@ -17,12 +17,12 @@ export const CoinsCount: FC<IProps> = ({ coins }) => {
 
       const timer = setTimeout(() => {
         setShowAddedCoins(false);
-      }, 3000); // Показывать добавленные монеты 2 секунды
+      }, 2000); // Показывать добавленные монеты 2 секунды
 
       // Обновить предыдущую сумму после задержки
       const updateTimer = setTimeout(() => {
         setPreviousCoins(coins);
-      }, 1000);
+      }, 2000);
 
       return () => {
         clearTimeout(timer);
@@ -42,7 +42,7 @@ export const CoinsCount: FC<IProps> = ({ coins }) => {
         {formattedCoins}{" "}
       </p>{" "}
       {showAddedCoins && (
-        <p className="absolute top-3 right-[80px] text-[20px] text-yellow-500 font-bold animate-fade-out">
+        <p className="absolute top-2 right-[80px] text-[20px] text-yellow-500 font-bold animate-fade-out">
           {" "}
           {formattedAddedCoins}{" "}
         </p>
