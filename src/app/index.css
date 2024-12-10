@@ -55,3 +55,9 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    
+    .gradient-coins {
+        background: linear-gradient(to top, #8a2be2, #ffffff 65%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }

@@ -3,5 +3,6 @@
 
 export interface IPriseResult {
     win: boolean
-    count: number
+    pollen_count: number
+    taps_count: number
 }

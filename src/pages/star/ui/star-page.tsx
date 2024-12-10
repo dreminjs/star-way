@@ -1,9 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { StarButton, StarHeader, StarTitle } from "../../../features/star";
 import { Navigation } from "../../../features/navigation";
 import { usePostResult } from "../../../shared";
 import { Header } from "../../../widgets/header";
 import { useGetUserData } from "../../../shared/api/queries/user.queries";
+import { CoinsCount } from "../../../features/coins";
 
 export const StarPage = () => {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -11,11 +12,16 @@ export const StarPage = () => {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [startTime, setStartTime] = useState<number | null>(null);
   const intervalRef = useRef<number | null>(null);
+  const [taps,setTaps] = useState<number>(0)
+  const [coins,setCoins] = useState<number>(0)
 
-  const { postResult, postResultData } = usePostResult();
 
-  const {} = useGetUserData()
+  const { postResult, postResultData, postResultLoading } = usePostResult();
 
+  const {userDataLoading,userData} = useGetUserData()
+
+
+  
   const handleMouseDown = () => {
     setSpinning(true);
     setElapsedTime(0);
@@ -39,11 +45,25 @@ export const StarPage = () => {
     }
   };
 
+  useEffect(() => {
+      if(userData) {
+        setTaps(userData.taps)
+        setCoins(userData.coins)
+      }
+  },[userDataLoading,userData])
+
+  useEffect(() => {
+    if (postResultData) {
+      setTaps(prev => prev - 1)
+      setCoins(postResultData.pollen_count)
+    }
+  },[postResultData,postResultLoading])
+
   return (
     <section className="flex h-svh flex-col items-center justify-between relative">
       <div className="w-full">
         <Header />
-        <StarHeader countTaps={0} seconds={elapsedTime} />
+        <StarHeader countTaps={taps} seconds={elapsedTime} />
       </div>
       <div>
         <StarTitle
@@ -56,6 +76,7 @@ export const StarPage = () => {
           handleMouseDown={handleMouseDown}
           handleMouseUp={handleMouseUp}
         />
+        <CoinsCount coins={coins} />
       </div>
       <Navigation />
     </section>
