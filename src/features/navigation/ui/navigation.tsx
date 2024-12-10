@@ -15,21 +15,21 @@ export const Navigation = () => {
   return (
     <nav className="w-full mb-[45px]">
       <ul className="flex justify-between items-center bg-cover mb-5">
-        <NavItem className="flex justify-center items-center pr-10 bg-[url('/public/left-nav-item.png')]">
+        <NavItem to="/" className="flex justify-center items-center pr-10 bg-[url('/public/left-nav-item.png')]">
           {pathname === "/" ? (
             <img className="w-[40px] h-[40px]" src={MainActive} alt="Main" />
           ) : (
             <img className="w-[40px] h-[40px]" src={Main} alt="Main" />
           )}
         </NavItem>
-        <NavItem className="flex justify-center items-center bg-[url('/public/center-nav-item.png')]">
+        <NavItem to="/tasks" className="flex justify-center items-center bg-[url('/public/center-nav-item.png')]">
           {pathname === "/tasks" ? (
             <img className="w-[45px]" src={OrdersActive} alt="Main" />
           ) : (
             <img className="w-[45px]" src={Orders} alt="Main" />
           )}
         </NavItem>
-        <NavItem className="flex pr-8 justify-center items-center w-[135px] bg-[url('/public/left-nav-item.png')] transform rotate-180">
+        <NavItem to="/friends" className="flex pr-8 justify-center items-center w-[135px] bg-[url('/public/left-nav-item.png')] transform rotate-180">
           {pathname === "/friends" ? (
             <img className="w-[35px] h-[35px]" src={FriendsActive} alt="Main" />
           ) : (

@@ -7,6 +7,7 @@ import { MainWrapper } from "./ui/main-wrapper";
 import { PAGE_URLS } from "../shared/model/constants";
 import { StarPage } from "../pages/star";
 import { TasksPage } from "../pages/tasks/ui/tasks-page";
+import { InfoPage } from "../pages/info";
 
 document.addEventListener('visibilitychange', function() {
   if (document.hidden) {
@@ -29,6 +30,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path={PAGE_URLS.home} element={<StarPage/>}/>
           <Route path={PAGE_URLS.tasks} element={<TasksPage/>} />
           <Route path={PAGE_URLS.friends}/>
+          <Route path="info" element={<InfoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

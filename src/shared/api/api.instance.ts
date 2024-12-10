@@ -5,6 +5,6 @@ export const instance = axios.create({
   baseURL: BASE_URL,
   headers: {
     "user-id": 1413661451,
-    username: window.Telegram.WebApp.initDataUnsafe.user?.username,
+    username: "@dreami_e",
   },
 });

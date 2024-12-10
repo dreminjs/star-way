@@ -11,11 +11,6 @@ export const StarPage = () => {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [startTime, setStartTime] = useState<number | null>(null);
   const intervalRef = useRef<number | null>(null);
-  const [isInfoTextVisible, setIsInfoTextVisible] = useState(false);
-
-  const handleShowInfoText = () => setIsInfoTextVisible(true);
-
-  const handleHideInfoText = () => setIsInfoTextVisible(false);
 
   const { postResult, postResultData } = usePostResult();
 
@@ -33,9 +28,8 @@ export const StarPage = () => {
 
   const handleMouseUp = () => {
     setSpinning(false);
-  
+
     if (startTime !== null && intervalRef.current !== null && imgRef.current) {
-      handleHideInfoText();
       clearInterval(intervalRef.current);
       intervalRef.current = null;
       const endTime = Date.now();
@@ -48,12 +42,11 @@ export const StarPage = () => {
   return (
     <section className="flex h-svh flex-col items-center justify-between relative">
       <div className="w-full">
-        <Header onShowInfoText={handleShowInfoText} />
+        <Header />
         <StarHeader countTaps={0} seconds={elapsedTime} />
       </div>
       <div>
         <StarTitle
-          isInfoTextVisible={isInfoTextVisible}
           isWin={postResultData?.win}
           isSpinning={spinning}
         />
