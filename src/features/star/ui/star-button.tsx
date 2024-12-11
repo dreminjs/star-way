@@ -14,6 +14,10 @@ export const StarButton: FC<StarButtonProps> = ({
 }) => {
   const [reset, setReset] = useState(false);
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
+  const [clickPosition, setClickPosition] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
 
   // Функция для сброса состояния
   const handleReset = () => {
@@ -37,9 +41,11 @@ export const StarButton: FC<StarButtonProps> = ({
     }
   };
 
-  const onTouchStart = () => {
+  const onTouchStart = (e: TouchEvent<HTMLButtonElement>) => {
+    const touch = e.changedTouches[0];
     if (isSpinningPossible && imgRef.current) {
       handleMouseDown();
+      setClickPosition({ x: touch.clientX, y: touch.clientY });
       imgRef.current.classList.add("active");
     }
   };
@@ -62,7 +68,7 @@ export const StarButton: FC<StarButtonProps> = ({
   const onMouseMove = (e: MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
     const button = target.getBoundingClientRect();
-  
+
     if (
       e.clientX < button.left ||
       e.clientX > button.right ||
@@ -73,8 +79,6 @@ export const StarButton: FC<StarButtonProps> = ({
       setTimeout(() => setIsSpinningPossible(true), 150); // Разблокировка
     }
   };
-
-
 
   return (
     <div className="mx-auto flex justify-center relative">
@@ -90,14 +94,27 @@ export const StarButton: FC<StarButtonProps> = ({
       ></button>
       <img
         ref={imgRef}
-        className={`w-[80vw] min-w-[420px]:w-[50vw] spin ${spinning ? "active" : ""} ${
-          reset ? "reset" : ""
-        }`}
+        className={`w-[80vw] min-w-[420px]:w-[50vw] spin ${
+          spinning ? "active" : ""
+        } ${reset ? "reset" : ""}`}
         src={Star}
         alt="Star"
         draggable="false"
         onContextMenu={(e) => e.preventDefault()}
       />
+      {clickPosition && (
+        <img
+          src={Star}
+          alt="Star"
+          className="absolute"
+          style={{
+            top: clickPosition.y,
+            left: clickPosition.x,
+            width: "50px",
+            height: "50px",
+          }}
+        />
+      )}
     </div>
   );
 };
