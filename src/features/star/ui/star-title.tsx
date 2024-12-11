@@ -33,11 +33,11 @@ export const StarTitle: FC<IProps> = ({
       setCurrentText("держи меня , летим домой");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
-    } else if (isHamsterVisible) {
-      setCurrentText("Меня нужно крутить, я не хомяк!")
     } else if (isWin) {
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
+    } else if (isHamsterVisible) {
+      setCurrentText("Меня нужно крутить, я не хомяк!")
     } else {
       setCurrentText("крути меня");
     }
