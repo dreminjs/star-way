@@ -54,7 +54,7 @@ export const CoinsCount: FC<IProps> = ({ coins }) => {
       <p className="text-[35px] gradient-numbers font-bold gradient-coins">
         {formattedCoins}
       </p>
-      {showAddedCoins && addedCoins < 100 && (
+      {showAddedCoins && addedCoins < 120 && (
         <p className="absolute top-0 left-[80px] text-[20px] text-yellow-500 font-bold animate-fade-out">
           {formattedAddedCoins}
         </p>
