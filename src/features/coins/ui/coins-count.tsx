@@ -50,12 +50,12 @@ export const CoinsCount: FC<IProps> = ({ coins }) => {
   const formattedAddedCoins = addedCoins > 0 ? `+${addedCoins}` : "";
 
   return (
-    <div className="relative mx-auto w-[100px] text-center">
+    <div className="relative mx-auto w-[125px] text-center">
       <p className="text-[35px] gradient-numbers font-bold gradient-coins">
         {formattedCoins}
       </p>
       {showAddedCoins && addedCoins < 120 && (
-        <p className="absolute top-0 left-[80px] text-[20px] text-yellow-500 font-bold animate-fade-out">
+        <p className="absolute top-0 right-[0px] text-[20px] text-yellow-500 font-bold animate-fade-out">
           {formattedAddedCoins}
         </p>
       )}
