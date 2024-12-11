@@ -1,10 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, MouseEvent } from "react";
 import { StarButton, StarHeader, StarTitle } from "../../../features/star";
 import { Navigation } from "../../../features/navigation";
 import { usePostResult } from "../../../shared";
 import { Header } from "../../../widgets/header";
 import { useGetUserData } from "../../../shared/api/queries/user.queries";
 import { CoinsCount } from "../../../features/coins";
+import Hamster from "../../../assets/hamster.png";
 
 export const StarPage = () => {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -12,16 +13,23 @@ export const StarPage = () => {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [startTime, setStartTime] = useState<number | null>(null);
   const intervalRef = useRef<number | null>(null);
-  const [taps,setTaps] = useState<number>(0)
-  const [coins,setCoins] = useState<number>(0)
-
+  const [taps, setTaps] = useState<number>(0);
+  const [coins, setCoins] = useState<number>(0);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [hamsterIsVisible, setHamsterIsVisible] = useState(false);
 
   const { postResult, postResultData, postResultLoading } = usePostResult();
 
-  const {userDataLoading,userData} = useGetUserData()
+  const { userDataLoading, userData } = useGetUserData();
 
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.id !== "star-button") {
+      setHamsterIsVisible(true);
+      setPosition({ x: e.clientX, y: e.clientY });
+    }
+  };
 
-  
   const handleMouseDown = () => {
     setSpinning(true);
     setElapsedTime(0);
@@ -46,27 +54,38 @@ export const StarPage = () => {
   };
 
   useEffect(() => {
-      if(userData) {
-        setTaps(userData.taps)
-        setCoins(userData.coins)
-      }
-  },[userDataLoading,userData])
+    if (userData) {
+      setTaps(userData.taps);
+      setCoins(userData.coins);
+    }
+  }, [userDataLoading, userData]);
 
   useEffect(() => {
     if (postResultData) {
-      setTaps(prev => prev - 1)
-      setCoins(postResultData.pollen_count)
+      setTaps((prev) => prev - 1);
+      setCoins(postResultData.pollen_count);
     }
-  },[postResultData,postResultLoading])
+  }, [postResultData, postResultLoading]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHamsterIsVisible(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [hamsterIsVisible]);
 
   return (
-    <section className="flex h-svh flex-col items-center justify-between relative">
+    <section
+      className="flex h-svh flex-col items-center justify-between relative"
+      onClick={handleClick}
+    >
       <div className="w-full">
         <Header />
         <StarHeader countTaps={taps} seconds={elapsedTime} />
       </div>
       <div>
         <StarTitle
+          isHamsterVisible={hamsterIsVisible}
           isLoading={postResultLoading}
           isWin={postResultData?.win}
           isSpinning={spinning}
@@ -80,6 +99,14 @@ export const StarPage = () => {
         <CoinsCount coins={coins} />
       </div>
       <Navigation />
+      {hamsterIsVisible && (
+        <img
+          style={{ left: position.x, top: position.y }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[50px]"
+          src={Hamster}
+          alt="hamster"
+        />
+      )}
     </section>
   );
 };

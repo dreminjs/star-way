@@ -14,10 +14,6 @@ export const StarButton: FC<StarButtonProps> = ({
 }) => {
   const [reset, setReset] = useState(false);
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
-  const [clickPosition, setClickPosition] = useState<{
-    x: number;
-    y: number;
-  } | null>(null);
 
   // Функция для сброса состояния
   const handleReset = () => {
@@ -41,11 +37,9 @@ export const StarButton: FC<StarButtonProps> = ({
     }
   };
 
-  const onTouchStart = (e: TouchEvent<HTMLButtonElement>) => {
-    const touch = e.changedTouches[0];
+  const onTouchStart = () => {
     if (isSpinningPossible && imgRef.current) {
       handleMouseDown();
-      setClickPosition({ x: touch.clientX, y: touch.clientY });
       imgRef.current.classList.add("active");
     }
   };
@@ -81,7 +75,7 @@ export const StarButton: FC<StarButtonProps> = ({
   };
 
   return (
-    <div className="mx-auto flex justify-center relative">
+    <div className="mx-auto flex justify-center relative" id="star-button">
       <button
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
@@ -102,19 +96,6 @@ export const StarButton: FC<StarButtonProps> = ({
         draggable="false"
         onContextMenu={(e) => e.preventDefault()}
       />
-      {clickPosition && (
-        <img
-          src={Star}
-          alt="Star"
-          className="absolute"
-          style={{
-            top: clickPosition.y,
-            left: clickPosition.x,
-            width: "50px",
-            height: "50px",
-          }}
-        />
-      )}
     </div>
   );
 };

@@ -9,16 +9,6 @@ import { StarPage } from "../pages/star";
 import { TasksPage } from "../pages/tasks/ui/tasks-page";
 import { InfoPage } from "../pages/info";
 
-document.addEventListener('visibilitychange', function() {
-  if (document.hidden) {
-    console.log('Приложение свернуто');
-    // Ваш код для обработки сворачивания
-  } else {
-    console.log('Приложение активно');
-    // Ваш код для обработки активации
-  }
-});
-
 Telegram.WebApp.disableVerticalSwipes()
 
 

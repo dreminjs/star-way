@@ -4,10 +4,17 @@ interface IProps {
   isSpinning: boolean;
   isWin?: boolean;
   delay?: number;
-  isLoading: boolean
+  isLoading: boolean;
+  isHamsterVisible: boolean;
 }
 
-export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100,isLoading }) => {
+export const StarTitle: FC<IProps> = ({
+  isSpinning,
+  isWin,
+  delay = 100,
+  isLoading,
+  isHamsterVisible,
+}) => {
   const [displayedText, setDisplayedText] = useState("крути меня");
   const [letterIndex, setLetterIndex] = useState(0);
   const [currentText, setCurrentText] = useState("крути меня");
@@ -26,6 +33,8 @@ export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100,isLoading
       setCurrentText("держи меня , летим домой");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
+    } else if (isHamsterVisible) {
+      setCurrentText("Меня нужно крутить, я не хомяк!")
     } else if (isWin) {
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
@@ -34,7 +43,7 @@ export const StarTitle: FC<IProps> = ({ isSpinning, isWin, delay = 100,isLoading
     }
     setDisplayedText("");
     setLetterIndex(0);
-  }, [isSpinning, isWin]);
+  }, [isSpinning, isWin,isHamsterVisible]);
 
   useEffect(() => {
     if (letterIndex < currentText.length) {
