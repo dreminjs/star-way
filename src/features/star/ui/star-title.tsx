@@ -37,7 +37,7 @@ export const StarTitle: FC<IProps> = ({
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
     } else if (isHamsterVisible) {
-      setCurrentText("Меня нужно крутить, я не хомяк!")
+      setCurrentText("404")
     } else {
       setCurrentText("крути меня");
     }
