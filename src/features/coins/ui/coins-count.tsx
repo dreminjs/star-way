@@ -55,7 +55,7 @@ export const CoinsCount: FC<IProps> = ({ coins }) => {
         {formattedCoins}
       </p>
       {showAddedCoins && addedCoins < 120 && (
-        <p className="absolute top-0 lefy-[0px] text-[20px] text-yellow-500 font-bold animate-fade-out">
+        <p className="absolute top-0 left-[0px] text-[20px] text-yellow-500 font-bold animate-fade-out">
           {formattedAddedCoins}
         </p>
       )}
