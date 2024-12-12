@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, MouseEvent } from "react";
+import { useState, useRef, useEffect, MouseEvent, TouchEvent } from "react";
 import { StarButton, StarHeader, StarTitle } from "../../../features/star";
 import { Navigation } from "../../../features/navigation";
 import { usePostResult } from "../../../shared";
@@ -22,11 +22,20 @@ export const StarPage = () => {
 
   const { userDataLoading, userData } = useGetUserData();
 
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleClickPc = (e: MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
     if (target.id !== "star-button") {
       setHamsterIsVisible(true);
       setPosition({ x: e.clientX, y: e.clientY });
+    }
+  };
+
+  const handleClickMobile = (e: TouchEvent<HTMLButtonElement>) => {
+    const touch = e.changedTouches[0];
+    const target = touch.target as HTMLElement;
+    if (target.id !== "star-button") {
+      setHamsterIsVisible(true);
+      setPosition({ x: touch.clientX, y: touch.clientY });
     }
   };
 
@@ -77,7 +86,8 @@ export const StarPage = () => {
   return (
     <section
       className="flex h-svh flex-col items-center justify-between relative"
-      onClick={handleClick}
+      onClick={handleClickPc}
+      onTouchStart={handleClickMobile}
     >
       <div className="w-full">
         <Header />
