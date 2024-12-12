@@ -16,25 +16,25 @@ export const Navigation = () => {
   return (
     <nav className="w-full mb-[45px]">
       <ul className="flex justify-between items-center bg-cover mb-5">
-        <NavItem to="/" className="flex justify-center items-center pr-10">
+        <NavItem to="/" className="flex justify-center items-center">
           {pathname === "/" ? (
-            <img className="w-[140px] h-[50px]" src={MainActive} alt="Main" />
+            <img className="w-[130px] h-[50px]" src={MainActive} alt="Main" />
           ) : (
-            <img className="w-[140px] h-[50px]" src={Main} alt="Main" />
+            <img className="w-[130px] h-[50px]" src={Main} alt="Main" />
           )}
         </NavItem>
         <NavItem to="/tasks" className="flex justify-center items-center">
           {pathname === "/tasks" ? (
-            <img className="w-[140px] h-[50px]" src={OrdersActive} alt="Main" />
+            <img className="w-[130px] h-[50px]" src={OrdersActive} alt="Main" />
           ) : (
-            <img className="w-[140px] h-[50px]" src={Orders} alt="Main" />
+            <img className="w-[130px] h-[50px]" src={Orders} alt="Main" />
           )}
         </NavItem>
-        <NavItem to="/friends" className="flex pr-8 justify-center items-center w-[135px] transform rotate-180">
+        <NavItem to="/friends" className="flex justify-center items-center w-[135px] transform rotate-180">
           {pathname === "/friends" ? (
-            <img className="w-[140px] h-[50px] transform rotate-180" src={FriendsActive} alt="Main" />
+            <img className="w-[130px] h-[50px] transform rotate-180" src={FriendsActive} alt="Main" />
           ) : (
-            <img className="w-[140px] h-[50px] transform rotate-180" src={Friends} alt="Main" />
+            <img className="w-[130px] h-[50px] transform rotate-180" src={Friends} alt="Main" />
           )}
         </NavItem>
       </ul>
