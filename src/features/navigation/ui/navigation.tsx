@@ -1,13 +1,14 @@
 import { NavItem } from "../../../entities/navigation";
-import Main from "../../../assets/main.png";
-import MainActive from "../../../assets/main-active.png";
-import Orders from"../../../assets/orders.png"; ;
-import OrdersActive from "../../../assets/orders-active.png";
-import Friends from "../../../assets/friends.png";
-import FriendsActive from "../../../assets/friend-active.png";
 import { Link, useLocation } from "react-router-dom";
 import Gaiki from "../../../assets/gaiki.png";
 import VersionBeta from "../../../assets/version-beta.png"; 
+import Orders from "../../../assets/orders-nav-item.png";
+import OrdersActive from "../../../assets/orders-active-nav-item .png";
+import Main from "../../../assets/star-nav-item.png";
+import MainActive from "../../../assets/star-nav-item-active.png";
+import Friends from "../../../assets/friends-nav-item.png";
+import FriendsActive from "../../../assets/friends-nav-item-active.png";
+
 
 export const Navigation = () => {
   const pathname = useLocation().pathname;
@@ -15,25 +16,25 @@ export const Navigation = () => {
   return (
     <nav className="w-full mb-[45px]">
       <ul className="flex justify-between items-center bg-cover mb-5">
-        <NavItem to="/" className="flex justify-center items-center pr-10 bg-[url('/public/left-nav-item.png')]">
+        <NavItem to="/" className="flex justify-center items-center pr-10">
           {pathname === "/" ? (
-            <img className="w-[40px] h-[40px]" src={MainActive} alt="Main" />
+            <img className="w-[140px] h-[50px]" src={MainActive} alt="Main" />
           ) : (
-            <img className="w-[40px] h-[40px]" src={Main} alt="Main" />
+            <img className="w-[140px] h-[50px]" src={Main} alt="Main" />
           )}
         </NavItem>
-        <NavItem to="/tasks" className="flex justify-center items-center bg-[url('/public/center-nav-item.png')]">
+        <NavItem to="/tasks" className="flex justify-center items-center">
           {pathname === "/tasks" ? (
-            <img className="w-[45px]" src={OrdersActive} alt="Main" />
+            <img className="w-[140px] h-[50px]" src={OrdersActive} alt="Main" />
           ) : (
-            <img className="w-[45px]" src={Orders} alt="Main" />
+            <img className="w-[140px] h-[50px]" src={Orders} alt="Main" />
           )}
         </NavItem>
-        <NavItem to="/friends" className="flex pr-8 justify-center items-center w-[135px] bg-[url('/public/left-nav-item.png')] transform rotate-180">
+        <NavItem to="/friends" className="flex pr-8 justify-center items-center w-[135px] transform rotate-180">
           {pathname === "/friends" ? (
-            <img className="w-[35px] h-[35px]" src={FriendsActive} alt="Main" />
+            <img className="w-[140px] h-[50px] transform rotate-180" src={FriendsActive} alt="Main" />
           ) : (
-            <img className="w-[35px] h-[35px]" src={Friends} alt="Main" />
+            <img className="w-[140px] h-[50px] transform rotate-180" src={Friends} alt="Main" />
           )}
         </NavItem>
       </ul>
