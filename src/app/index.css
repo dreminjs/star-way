@@ -1,76 +1,82 @@
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-    .header__title-gradient {
-        background: linear-gradient(to bottom, white, rgb(99, 104, 172));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    
-    @keyframes spin {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
-    }
-    
-    @keyframes decelerate {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
-    }
-    
-    .spin {
-        animation: spin 0.65s linear infinite;
-        animation-play-state: paused;
-        transition: animation-play-state 0.2s ease-out;
-    }
-    
-    .spin.active {
-        animation-play-state: running;
-    }
-    
-    .spin.reset {
-        animation: decelerate 0.8s linear forwards;
-    }
-    
-    img {
-        -webkit-user-drag: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        touch-action: none;
-        pointer-events: none;
-        /* Отключаем жесты на мобильных устройствах */
-    }
-    
-    .gradient-numbers {
-        background: linear-gradient(to top, #ff4500, #ffa500);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    
-    .gradient-coins {
-        background: linear-gradient(to top, #8a2be2, #ffffff 65%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    
-    @keyframes fadeOut {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-    
-    .animate-fade-out {
-        animation: fadeOut 3s forwards;
-    }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.header__title-gradient {
+  background: linear-gradient(to bottom, white, rgb(99, 104, 172));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes decelerate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 0.65s linear infinite;
+  animation-play-state: paused;
+  transition: animation-play-state 0.2s ease-out;
+}
+
+.spin.active {
+  animation-play-state: running;
+}
+
+.spin.reset {
+  animation: decelerate 0.8s linear forwards;
+}
+
+img {
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: none;
+  pointer-events: none;
+  /* Отключаем жесты на мобильных устройствах */
+}
+
+.gradient-numbers {
+  background: linear-gradient(to top, #ff4500, #ffa500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-coins {
+  background: linear-gradient(to top, #8a2be2, #ffffff 65%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-fade-out {
+  animation: fadeOut 3s forwards;
+}
+
+.gradient-text {
+  background: linear-gradient(to top, #00bfff, #086dd3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

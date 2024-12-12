@@ -11,6 +11,7 @@ import { InfoPage } from "../pages/info";
 
 Telegram.WebApp.disableVerticalSwipes()
 
+Telegram.WebApp.expand()
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

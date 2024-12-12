@@ -9,3 +9,6 @@ export { usePostResult } from "./api/queries/prise.queries"
 export type { IPriseResult } from "./model/types/prise.interface"
 
 export type { UserData } from "./model/types/user.interface"
+
+
+export { useGetTasks } from "./api/queries/tasks.queries"
