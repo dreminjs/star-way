@@ -1,11 +1,11 @@
-import { useGetTasks } from "../../../shared";
-import { useGetUserData } from "../../../shared/api/queries/user.queries";
+// import { useGetTasks } from "../../../shared";
+// import { useGetUserData } from "../../../shared/api/queries/user.queries";
 import { Header } from "../../../widgets/header";
 
 export const TasksPage = () => {
-  const { tasks } = useGetTasks();
+  // const { tasks } = useGetTasks();
 
-  const { userData } = useGetUserData()
+  // const { userData } = useGetUserData()
 
   return (
     <section className="flex h-svh flex-col items-center justify-between relative">
