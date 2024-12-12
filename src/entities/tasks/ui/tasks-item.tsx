@@ -8,7 +8,7 @@ interface IProps {
 
 export const TasksItem: FC<IProps> = ({ content }) => {
   return (
-    <li className="flex justify-between items-center h-[50px] bg-[#25517e] p-[10px]">
+    <li className="flex justify-between items-center h-[50px] bg-[#25517e] p-[30px] rounded-lg">
       <img src={Tg} alt="" className="h-[50px]" />
       <p className="text-white">{content}</p>
       <img className="h-[50px]" src={Prise} alt="" />
