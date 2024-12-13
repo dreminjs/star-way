@@ -1,10 +1,10 @@
 import { InviteFriendsButton } from "../../../features/friends";
 import { Navigation } from "../../../features/navigation";
-import { useGetRefs } from "../../../shared/api/queries/refs.queries";
+// import { useGetRefs } from "../../../shared/api/queries/refs.queries";
 import { Header } from "../../../widgets/header";
 
 export const FriendsPage = () => {
-  const {} = useGetRefs();
+  //                              
 
   return (
     <section className="flex h-svh flex-col items-center justify-between relative">

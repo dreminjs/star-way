@@ -76,7 +76,7 @@ img {
 }
 
 .gradient-text {
-  background: linear-gradient(to top, #00bfff, #086dd3);
+  background: linear-gradient(to top, #78c6d0, #5991bd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
