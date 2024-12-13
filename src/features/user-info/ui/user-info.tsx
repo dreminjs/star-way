@@ -9,7 +9,7 @@ export const UserInfo: FC<IProps> = ({ tasksCount }) => {
   const { userData } = useGetUserData();
 
   return (
-    <div className="flex justify-between w-full mx-auto">
+    <div className="flex justify-between w-[320px] mx-auto">
       <div className="flex items-center gap-2 ">
         <p className="gradient-text text-[30px] font-bold">тапов</p>
         <p className="gradient-numbers text-[30px] font-bold">

@@ -10,7 +10,7 @@ interface IProps {
 export const NavItem: FC<IProps> = ({ children, className, to }) => {
   return (
     <li
-      className={` h-[60px] w-[155px] bg-no-repeat bg-contain ${className} cursor-pointer`}
+      className={` h-[60px] w-[125px] bg-no-repeat bg-contain ${className} cursor-pointer`}
     >
       <Link to={to}>{children}</Link>
     </li>
