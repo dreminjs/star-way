@@ -5,15 +5,17 @@ interface StarButtonProps {
   imgRef: RefObject<HTMLImageElement>;
   handleMouseDown: () => void;
   handleMouseUp: () => void;
+  isSpinningPossible: boolean
 }
 export const StarButton: FC<StarButtonProps> = ({
   handleMouseDown,
   handleMouseUp,
   spinning,
   imgRef,
+  isSpinningPossible
 }) => {
   const [reset, setReset] = useState(false);
-  const [isSpinningPossible, setIsSpinningPossible] = useState(true);
+  
 
   // Функция для сброса состояния
   const handleReset = () => {
@@ -22,10 +24,9 @@ export const StarButton: FC<StarButtonProps> = ({
   };
 
   const onMouseUp = () => {
+  
     handleMouseUp();
     handleReset(); // Сброс анимации
-    setIsSpinningPossible(false);
-    setTimeout(() => setIsSpinningPossible(true), 150); // Блокировка повторного запуска на 150 мс
   };
 
   const onMouseDown = () => {
@@ -55,7 +56,7 @@ export const StarButton: FC<StarButtonProps> = ({
       touch.clientY > button.bottom
     ) {
       onMouseUp(); // Остановка вращения
-      setTimeout(() => setIsSpinningPossible(true), 150); // Разблокировка
+// Разблокировка
     }
   };
 
@@ -70,7 +71,7 @@ export const StarButton: FC<StarButtonProps> = ({
       e.clientY > button.bottom
     ) {
       onMouseUp(); // Остановка вращения
-      setTimeout(() => setIsSpinningPossible(true), 150); // Разблокировка
+    // Разблокировка
     }
   };
 

@@ -17,6 +17,8 @@ export const StarPage = () => {
   const [coins, setCoins] = useState<number>(0);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [hamsterIsVisible, setHamsterIsVisible] = useState(false);
+  const [isSpinningPossible, setIsSpinningPossible] = useState(false);
+
 
   const { postResult, postResultData, postResultLoading } = usePostResult();
 
@@ -59,6 +61,7 @@ export const StarPage = () => {
       const totalElapsedTime = endTime - startTime;
       setElapsedTime(totalElapsedTime);
       if (totalElapsedTime > 1000) postResult(totalElapsedTime);
+      setIsSpinningPossible(false);
     }
   };
 
@@ -83,6 +86,13 @@ export const StarPage = () => {
     return () => clearTimeout(timer);
   }, [hamsterIsVisible]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsSpinningPossible(true);
+    }, 5000);
+    return () => clearTimeout(timer);
+  })
+
   return (
     <section
       className="flex h-svh flex-col items-center justify-between relative"
@@ -99,6 +109,7 @@ export const StarPage = () => {
           isLoading={postResultLoading}
           isWin={postResultData?.win}
           isSpinning={spinning}
+          isSpinningPossible={isSpinningPossible}
         />
         <StarButton
           spinning={spinning}

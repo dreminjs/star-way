@@ -6,6 +6,7 @@ interface IProps {
   delay?: number;
   isLoading: boolean;
   isHamsterVisible: boolean;
+  isSpinningPossible: boolean;
 }
 
 export const StarTitle: FC<IProps> = ({
@@ -14,6 +15,7 @@ export const StarTitle: FC<IProps> = ({
   delay = 100,
   isLoading,
   isHamsterVisible,
+  isSpinningPossible
 }) => {
   const [displayedText, setDisplayedText] = useState("крути меня");
   const [letterIndex, setLetterIndex] = useState(0);
@@ -36,14 +38,17 @@ export const StarTitle: FC<IProps> = ({
     } else if (isWin) {
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
-    } else if (isHamsterVisible) {
+    } else if (isSpinningPossible) {
+      setCurrentText("Я устала , подожди немножко");
+    }
+     else if (isHamsterVisible) {
       setCurrentText("404")
     } else {
       setCurrentText("крути меня");
     }
     setDisplayedText("");
     setLetterIndex(0);
-  }, [isSpinning, isWin,isHamsterVisible]);
+  }, [isSpinning, isWin,isHamsterVisible,isSpinningPossible]);
 
   useEffect(() => {
     if (letterIndex < currentText.length) {
