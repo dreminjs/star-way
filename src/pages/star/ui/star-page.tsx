@@ -112,6 +112,7 @@ export const StarPage = () => {
           isSpinningPossible={isSpinningPossible}
         />
         <StarButton
+          isSpinningPossible={isSpinningPossible}
           spinning={spinning}
           imgRef={imgRef}
           handleMouseDown={handleMouseDown}
