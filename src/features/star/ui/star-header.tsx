@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { formatTime } from "../../../shared";
-import { TapAnward } from "../../../entities/taps"
+
 
 
 interface IProps {
