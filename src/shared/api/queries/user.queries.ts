@@ -1,21 +1,29 @@
-import { useQuery } from "@tanstack/react-query"
-import { userService } from "../services/user.service"
-
-
-
+import { useQuery } from "@tanstack/react-query";
+import { userService } from "../services/user.service";
 
 export const useGetUserData = () => {
+  const { data: userData, isPending: userDataLoading, isSuccess: userDataSuccess, refetch } = useQuery({
+    queryKey: ["general", "user"],
+    queryFn: async () => await userService.findOneData(),
+    enabled: true
+  });
 
-    const {
-        data: userData,
-        isPending: userDataLoading,
-    } = useQuery({
-        queryKey: ["general"],
-        queryFn: async () => await userService.findOneData(),
-    })
+  return {
+    userData,
+    userDataLoading,
+    userDataSuccess,
+    refetch
+  };
+};
 
-    return {
-        userData,
-        userDataLoading
-    }
-}
+export const useCheckEnter = () => {
+  const { data: days, isPending: daysIsLoading } = useQuery({
+    queryKey: ["general", "check"],
+    queryFn: async () => await userService.checkEnter(),
+  });
+
+  return {
+    days,
+    daysIsLoading,
+  };
+};
