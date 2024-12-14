@@ -17,8 +17,9 @@ export const StarPage = () => {
   const [coins, setCoins] = useState<number>(0);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [hamsterIsVisible, setHamsterIsVisible] = useState(false);
-  const [isSpinningPossible, setIsSpinningPossible] = useState(false);
-
+  const [isSpinningPossible, setIsSpinningPossible] = useState(true);
+  const [isWarningTitleVisible, setIsWarningTitleVisible] =
+    useState<boolean>(false);
 
   const { postResult, postResultData, postResultLoading } = usePostResult();
 
@@ -41,14 +42,24 @@ export const StarPage = () => {
     }
   };
 
+  const handleClick = () => {
+    if (!isSpinningPossible && !spinning) {
+      console.log("Click");
+      setIsWarningTitleVisible(true);
+    }
+  };
+
   const handleMouseDown = () => {
-    setSpinning(true);
-    setElapsedTime(0);
-    const start = Date.now();
-    setStartTime(start);
-    intervalRef.current = window.setInterval(() => {
-      setElapsedTime(Date.now() - start);
-    }, 1);
+    console.log("handleMouseDown");
+    if (isSpinningPossible) {
+      setSpinning(true);
+      setElapsedTime(0);
+      const start = Date.now();
+      setStartTime(start);
+      intervalRef.current = window.setInterval(() => {
+        setElapsedTime(Date.now() - start);
+      }, 1);
+    }
   };
 
   const handleMouseUp = () => {
@@ -80,6 +91,16 @@ export const StarPage = () => {
   }, [postResultData, postResultLoading]);
 
   useEffect(() => {
+    if (isWarningTitleVisible) {
+      const timer = setTimeout(() => {
+        setIsWarningTitleVisible(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isWarningTitleVisible]);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setHamsterIsVisible(false);
     }, 5000);
@@ -91,7 +112,7 @@ export const StarPage = () => {
       setIsSpinningPossible(true);
     }, 5000);
     return () => clearTimeout(timer);
-  })
+  });
 
   return (
     <section
@@ -105,6 +126,7 @@ export const StarPage = () => {
       </div>
       <div>
         <StarTitle
+          isWarningTitleVisible={isWarningTitleVisible}
           isHamsterVisible={hamsterIsVisible}
           isLoading={postResultLoading}
           isWin={postResultData?.win}
@@ -112,6 +134,7 @@ export const StarPage = () => {
           isSpinningPossible={isSpinningPossible}
         />
         <StarButton
+          handleClick={handleClick}
           isSpinningPossible={isSpinningPossible}
           spinning={spinning}
           imgRef={imgRef}

@@ -5,32 +5,41 @@ interface StarButtonProps {
   imgRef: RefObject<HTMLImageElement>;
   handleMouseDown: () => void;
   handleMouseUp: () => void;
-  isSpinningPossible: boolean
+  isSpinningPossible: boolean;
+  handleClick: () => void;
 }
 export const StarButton: FC<StarButtonProps> = ({
   handleMouseDown,
   handleMouseUp,
   spinning,
   imgRef,
-  isSpinningPossible
+  isSpinningPossible,
+  handleClick
 }) => {
   const [reset, setReset] = useState(false);
-  
+  const [buttonLocked, setButtonLocked] = useState(false);
 
   // Функция для сброса состояния
   const handleReset = () => {
     setReset(true);
-    setTimeout(() => setReset(false), 1000); // Сброс через 1 секунду (длительность анимации)
+    setTimeout(() => setReset(false), 5000); // Сброс через 1 секунду (длительность анимации)
+  };
+
+  const lockButton = () => {
+    setButtonLocked(true);
+    setTimeout(() => setButtonLocked(false), 5000); // Заблокировать на 5 секунд
   };
 
   const onMouseUp = () => {
-  
-    handleMouseUp();
-    handleReset(); // Сброс анимации
+    if (!buttonLocked) {
+      handleMouseUp();
+      handleReset(); // Сброс анимации
+      lockButton(); // Заблокировать кнопку
+    }
   };
 
   const onMouseDown = () => {
-    if (isSpinningPossible) {
+    if (isSpinningPossible && !buttonLocked) {
       handleMouseDown();
       if (imgRef.current) {
         imgRef.current.classList.add("active");
@@ -39,7 +48,7 @@ export const StarButton: FC<StarButtonProps> = ({
   };
 
   const onTouchStart = () => {
-    if (isSpinningPossible && imgRef.current) {
+    if (isSpinningPossible && !buttonLocked && imgRef.current) {
       handleMouseDown();
       imgRef.current.classList.add("active");
     }
@@ -56,7 +65,6 @@ export const StarButton: FC<StarButtonProps> = ({
       touch.clientY > button.bottom
     ) {
       onMouseUp(); // Остановка вращения
-// Разблокировка
     }
   };
 
@@ -71,13 +79,14 @@ export const StarButton: FC<StarButtonProps> = ({
       e.clientY > button.bottom
     ) {
       onMouseUp(); // Остановка вращения
-    // Разблокировка
     }
   };
+
 
   return (
     <div className="mx-auto flex justify-center relative" id="star-button">
       <button
+        onClick={handleClick}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onTouchStart={onTouchStart}

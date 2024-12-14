@@ -7,6 +7,7 @@ interface IProps {
   isLoading: boolean;
   isHamsterVisible: boolean;
   isSpinningPossible: boolean;
+  isWarningTitleVisible: boolean;
 }
 
 export const StarTitle: FC<IProps> = ({
@@ -15,7 +16,8 @@ export const StarTitle: FC<IProps> = ({
   delay = 100,
   isLoading,
   isHamsterVisible,
-  isSpinningPossible
+  isSpinningPossible,
+  isWarningTitleVisible,
 }) => {
   const [displayedText, setDisplayedText] = useState("крути меня");
   const [letterIndex, setLetterIndex] = useState(0);
@@ -33,22 +35,19 @@ export const StarTitle: FC<IProps> = ({
       setCurrentText("ищу путь...");
     } else if (isSpinning) {
       setCurrentText("держи меня , летим домой");
+    } else if (isWarningTitleVisible) {
+      setCurrentText("я устала, подожди немного");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
     } else if (isWin) {
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
     } else if (isSpinningPossible) {
-      setCurrentText("Я устала , подожди немножко");
-    }
-     else if (isHamsterVisible) {
-      setCurrentText("404")
-    } else {
       setCurrentText("крути меня");
     }
     setDisplayedText("");
     setLetterIndex(0);
-  }, [isSpinning, isWin,isHamsterVisible,isSpinningPossible]);
+  }, [isSpinning, isWin, isWarningTitleVisible]);
 
   useEffect(() => {
     if (letterIndex < currentText.length) {
@@ -67,6 +66,10 @@ export const StarTitle: FC<IProps> = ({
       return () => clearTimeout(nextMessageTimeout);
     }
   }, [letterIndex, currentText, isWin, messageIndex]);
+
+  useEffect(() => {
+    console.log("isWarningTitleVisible", isWarningTitleVisible);
+  }, [isWarningTitleVisible]);
 
   return (
     <h3
