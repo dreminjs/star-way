@@ -94,7 +94,7 @@ export const StarPage = () => {
     if (isWarningTitleVisible) {
       const timer = setTimeout(() => {
         setIsWarningTitleVisible(false);
-      }, 5000);
+      }, 4000);
 
       return () => clearTimeout(timer);
     }

@@ -39,6 +39,8 @@ export const StarTitle: FC<IProps> = ({
       setCurrentText("я устала, подожди немного");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
+    } else if(isHamsterVisible) {
+      setCurrentText("404")
     } else if (isWin) {
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
@@ -47,7 +49,7 @@ export const StarTitle: FC<IProps> = ({
     }
     setDisplayedText("");
     setLetterIndex(0);
-  }, [isSpinning, isWin, isWarningTitleVisible]);
+  }, [isSpinning, isWin, isWarningTitleVisible,isHamsterVisible]);
 
   useEffect(() => {
     if (letterIndex < currentText.length) {
