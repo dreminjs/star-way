@@ -15,7 +15,7 @@ export const EveryDayAwards = () => {
 
   return (
     <div className="w-full ">
-      <div className="bg-[#1e2541] mb-2 border-[#90b0c4] border-b-[1px]">
+      <div className="bg-[#1e2541] mb-5 border-[#90b0c4] border-b-[1px]">
         {" "}
         {days?.counter && (
           <ul className="flex justify-center items-center mx-auto">
