@@ -2,11 +2,12 @@ import { FC } from "react";
 
 interface IProps {
   boost: number;
+  onTakeBoost: () => void;
 }
 
-export const BoostCoins: FC<IProps> = ({ boost }) => {
+export const BoostCoins: FC<IProps> = ({ boost, onTakeBoost }) => {
   return (
-    <button className="mx-auto block text-[17px] italic">
+    <button onClick={boost >= 1 ? onTakeBoost : () => {}} className="mx-auto block text-[17px] italic">
       <span className="text-white font-sans">
         буст от друзей
         <span className="text-[#bb4b29]">{" "}{boost}</span>

@@ -2,11 +2,22 @@ import { FriendsList, InviteFriendsButton } from "../../../features/friends";
 import { Navigation } from "../../../features/navigation";
 
 import { Header } from "../../../widgets/header";
-import { useGetRefs } from "../../../shared/api/queries/refs.queries";
+import { useBoostRefs, useGetRefs } from "../../../shared/api/queries/refs.queries";
 import { BoostCoins } from "../../../features/coins";
+import { useEffect } from "react";
 
 export const FriendsPage = () => {
-  const {refsData} = useGetRefs();
+  const {refsData, refsDataRefetch} = useGetRefs();
+
+  const {boost, boostDataSuccess} = useBoostRefs()
+
+  const handleTakeBoost = () => boost()
+
+  useEffect(() => {
+    if(boostDataSuccess) {
+      refsDataRefetch()
+    }
+  },[boostDataSuccess,refsDataRefetch])
 
   return (
     <section className="flex h-svh flex-col items-center justify-between relative">
@@ -16,7 +27,7 @@ export const FriendsPage = () => {
           Друзья
         </h3>
         <InviteFriendsButton />
-        <BoostCoins boost={refsData?.boost || 0} />
+        <BoostCoins onTakeBoost={handleTakeBoost} boost={refsData?.boost || 0} />
       </div>
       <FriendsList refs={refsData?.referrals} />
       <Navigation />

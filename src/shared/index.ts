@@ -16,3 +16,7 @@ export { useCheckEnter } from "./api/queries/user.queries";
 export type { IGetRefsResponse } from "./model/types/refs.interface";
 
 export type { ICheckSubResponse, ICheckBody } from "./model/types/prise.interface";
+
+export type { IBoostRefsResponse } from "./model/types/refs.interface";
+
+export { useBoostRefs } from "./api/queries/refs.queries";

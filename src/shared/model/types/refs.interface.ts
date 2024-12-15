@@ -13,3 +13,7 @@ export interface IGetRefsResponse {
     referrals: IRef[];
     boost: number
 }
+
+export interface IBoostRefsResponse {
+    response: boolean
+}
