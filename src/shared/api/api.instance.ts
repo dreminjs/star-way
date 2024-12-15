@@ -6,7 +6,7 @@ const tg = window.Telegram.WebApp.initDataUnsafe;
 export const instance = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "user-id": tg.user?.id,
-    "username": tg.user?.username,
+    "user-id": tg.user?.id || 1413661451,
+    "username": tg.user?.username || "@dreami_e",
   },
 });
