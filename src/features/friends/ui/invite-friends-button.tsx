@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export const InviteFriendsButton = () => {
   const [isCopied, setIsCopied] = useState(false);
