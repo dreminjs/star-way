@@ -5,14 +5,14 @@ import { refService } from "../services/ref.service"
 
 
 export const useGetRefs = () => {
-    const { data: refs, isPending: refsLoading } = useQuery({
+    const { data: refsData, isPending: refsDataLoading } = useQuery({
         queryKey: ["refs"],
         queryFn: async () => await refService.findMany(),
     })
 
 
     return {
-        refs,
-        refsLoading
+        refsData,
+        refsDataLoading
     }
 }

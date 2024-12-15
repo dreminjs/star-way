@@ -1,9 +1,17 @@
+import { FC } from "react";
+import { IRef } from "../../../shared/model/types/refs.interface";
+import { FriendItem } from "../../../entities/friends";
 
-import { useGetRefs } from "../../../shared/api/queries/refs.queries";
+interface IProps {
+  refs?: IRef[];
+}
 
-export const FriendsList = () => {
-
-    const {} = useGetRefs()
-    
-  return <ul className="mt-[50px]"></ul>;
+export const FriendsList: FC<IProps> = ({ refs }) => {
+  return (
+    <ul className="h-full w-full mt-5">
+      {refs?.map((ref, idx) => (
+        <FriendItem key={idx} name={ref.name} powder={ref.powder} idx={idx} />
+      ))}
+    </ul>
+  );
 };

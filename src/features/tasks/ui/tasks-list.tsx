@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export const TasksList: FC<IProps> = ({ channels }) => {
-  return <ul className="h-[80svh] w-full mt-[50px]">
+  return <ul className="h-[80svh] w-full mt-[50px] overflow-y-hidden">
     {
       channels.map((channel,idx) => (
         <TasksItem key={idx} content={channel.name} />
