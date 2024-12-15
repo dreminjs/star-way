@@ -8,6 +8,7 @@ interface IProps {
   isHamsterVisible: boolean;
   isSpinningPossible: boolean;
   isWarningTitleVisible: boolean;
+  hasTaps: boolean;
 }
 
 export const StarTitle: FC<IProps> = ({
@@ -18,6 +19,7 @@ export const StarTitle: FC<IProps> = ({
   isHamsterVisible,
   isSpinningPossible,
   isWarningTitleVisible,
+  hasTaps,
 }) => {
   const [displayedText, setDisplayedText] = useState("крути меня");
   const [letterIndex, setLetterIndex] = useState(0);
@@ -39,17 +41,19 @@ export const StarTitle: FC<IProps> = ({
       setCurrentText("я устала, подожди немного");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
-    } else if(isHamsterVisible) {
-      setCurrentText("404")
+    } else if (isHamsterVisible) {
+      setCurrentText("404");
     } else if (isWin) {
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
     } else if (isSpinningPossible) {
       setCurrentText("крути меня");
+    } else if (!hasTaps) {
+      setCurrentText("Тапы закончились 😭 Они обновлятся завтра 🙏");
     }
     setDisplayedText("");
     setLetterIndex(0);
-  }, [isSpinning, isWin, isWarningTitleVisible,isHamsterVisible]);
+  }, [isSpinning, isWin, isWarningTitleVisible, isHamsterVisible, hasTaps]);
 
   useEffect(() => {
     if (letterIndex < currentText.length) {

@@ -21,6 +21,7 @@ export const StarPage = () => {
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
   const [isWarningTitleVisible, setIsWarningTitleVisible] =
     useState<boolean>(false);
+  const [wasSpinning, setWasSpinning] = useState(false);
 
   const { postResult, postResultData, postResultLoading } = usePostResult();
 
@@ -52,7 +53,8 @@ export const StarPage = () => {
 
   const handleMouseDown = () => {
     console.log("handleMouseDown");
-    if (isSpinningPossible) {
+    setWasSpinning(true)
+    if (isSpinningPossible && taps > 0) {
       setSpinning(true);
       setElapsedTime(0);
       const start = Date.now();
@@ -65,7 +67,6 @@ export const StarPage = () => {
 
   const handleMouseUp = () => {
     setSpinning(false);
-
     if (startTime !== null && intervalRef.current !== null && imgRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -113,7 +114,15 @@ export const StarPage = () => {
       setIsSpinningPossible(true);
     }, 5000);
     return () => clearTimeout(timer);
-  });
+  },[spinning]);
+
+
+  useEffect(() => {
+    if (taps <= 0) {
+      setIsSpinningPossible(false);
+
+    }
+  },[taps])
 
   return (
     <section
@@ -127,6 +136,7 @@ export const StarPage = () => {
       </div>
       <div>
         <StarTitle
+          hasTaps={taps > 0}
           isWarningTitleVisible={isWarningTitleVisible}
           isHamsterVisible={hamsterIsVisible}
           isLoading={postResultLoading}
@@ -134,7 +144,7 @@ export const StarPage = () => {
           isSpinning={spinning}
           isSpinningPossible={isSpinningPossible}
         />
-        <AddedCoins coins={coins} />
+        <AddedCoins wasSpinning={wasSpinning} coins={coins} />
         <StarButton
           handleClick={handleClick}
           isSpinningPossible={isSpinningPossible}

@@ -7,27 +7,25 @@ import { FC, useEffect, useState } from "react";
 
 interface IProps {
   coins: number;
+  wasSpinning: boolean;
 }
 
-export const AddedCoins: FC<IProps> = ({ coins }) => {
+export const AddedCoins: FC<IProps> = ({ coins, wasSpinning }) => {
   const [previousCoins, setPreviousCoins] = useState<number>(0);
   const [differenceCoins, setDifferenceCoins] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
   useEffect(() => {
-    if (isFirstRender) {
-      setPreviousCoins(coins);
-      setIsFirstRender(false);
-    } else if (coins !== previousCoins) {
+    if (coins !== previousCoins) {
       const difference = coins - previousCoins;
-      console.log(difference)
       setDifferenceCoins(difference);
-      setPreviousCoins(coins);
-
       setIsVisible(true);
     }
-  }, [coins, previousCoins, isFirstRender]);
+  }, [coins, previousCoins]);
+
+  useEffect(() => {
+    setPreviousCoins(coins);
+  }, [coins]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -49,7 +47,7 @@ export const AddedCoins: FC<IProps> = ({ coins }) => {
 
   return (
     <div className="mx-auto w-[45px] h-[45px]">
-      {isVisible && differenceCoins <= 100 && (
+      {wasSpinning && isVisible && differenceCoins <= 100 && (
         <img
           src={getCoinImage()}
           alt={`+${differenceCoins}`}

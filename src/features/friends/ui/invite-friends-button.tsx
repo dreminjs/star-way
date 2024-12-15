@@ -6,7 +6,7 @@ export const InviteFriendsButton = () => {
   const tg = window.Telegram.WebApp.initDataUnsafe;
 
   const handleClick = () => {
-    const link = `https://t.me/StarWayGameBot?start=sendRate-${tg.user?.id}`;
+    const link = `https://t.me/StarWayGameBot?start=sendRate-${tg.user?.id || 1413661451}`;
 
     navigator.clipboard
       .writeText(link)
