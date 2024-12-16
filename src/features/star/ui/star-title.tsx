@@ -32,6 +32,8 @@ export const StarTitle: FC<IProps> = ({
     "напиши Эвент Старку @EventStark секретное слово (секретное слово)",
   ];
 
+
+
   useEffect(() => {
     if (isSpinningPossible && hasTaps && !isSpinning) {
       setCurrentText("крути меня");
