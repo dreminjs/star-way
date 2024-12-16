@@ -92,7 +92,7 @@ export const StarPage = () => {
     if (userData) {
       setTaps(userData.taps);
       setCoins(userData.coins);
-      if (userData.taps > 0) setHasTaps(false);
+      if (userData.taps > 0) setHasTaps(true);
       else setHasTaps(false);
     }
   }, [userDataLoading, userData]);
