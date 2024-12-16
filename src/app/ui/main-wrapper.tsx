@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { Container } from "./container";
 import Preview from "../../assets/loading-page-2.png";
+import QRCode from "react-qr-code";
 
 export const MainWrapper = () => {
   const [isPreviwVisible, setIsPreviwVisible] = useState(true);
@@ -16,10 +17,6 @@ export const MainWrapper = () => {
     };
   }, []);
 
-  const tg = Telegram.WebApp.platform
-
-  console.log(tg)
-
   return (
     <div className="w-full h-screen mx-auto bg-[url('/public/main-bg.png')] bg-no-repeat bg-center bg-cover overflow-hidden">
       {isPreviwVisible && (
@@ -29,6 +26,11 @@ export const MainWrapper = () => {
             alt="Splash"
             className="w-full h-full object-cover"
           />
+        </div>
+      )}
+      {Telegram.WebApp.platform === "pc" && (
+        <div className="fixed h-screen flex items-center justify-center inset-0 z-50 bg-black">
+          <QRCode value="https://t.me/StarWayGameBot" />
         </div>
       )}
       <Container>
