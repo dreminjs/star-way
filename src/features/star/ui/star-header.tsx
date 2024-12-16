@@ -13,7 +13,7 @@ export const StarHeader: FC<IProps> = ({ countTaps, seconds }) => {
     <header className=" w-full px-5">
       <div className="flex justify-between items-center">
         <p className="text-white text-[30px] font-bold">
-          Тапы <span className="gradient-numbers text-[35px]">{countTaps}</span>
+          Тапы <span className="gradient-numbers text-[35px]">{countTaps > 0 ? countTaps : 0}</span>
         </p>
         <p className="text-[35px] gradient-numbers font-bold">
           {formatTime(seconds)}

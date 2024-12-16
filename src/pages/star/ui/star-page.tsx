@@ -152,6 +152,7 @@ export const StarPage = () => {
           imgRef={imgRef}
           handleMouseDown={handleMouseDown}
           handleMouseUp={handleMouseUp}
+          hasTaps={taps > 0}
         />
         <CoinsCount coins={coins} />
       </div>

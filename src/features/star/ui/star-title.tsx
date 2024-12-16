@@ -48,7 +48,7 @@ export const StarTitle: FC<IProps> = ({
       setMessageIndex(0);
     } else if (isSpinningPossible) {
       setCurrentText("крути меня");
-    } else if (!hasTaps) {
+    } else {
       setCurrentText("Тапы закончились 😭 Они обновлятся завтра 🙏");
     }
     setDisplayedText("");

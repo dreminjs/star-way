@@ -15,7 +15,7 @@ export const EveryDayAwards = () => {
 
   return (
     <div className="w-full ">
-      <div className="bg-[#1e2541] border-[#90b0c4] border-b-[1px]">
+      <div className="bg-[#1e2541] border-[#90b0c4] border-y-[1px]">
         {days?.counter !== undefined && (
           <ul className="flex justify-center items-center mx-auto py-2">
             <li className="pl-0 pr-5">

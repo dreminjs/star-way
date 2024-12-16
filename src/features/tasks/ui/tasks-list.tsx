@@ -9,11 +9,7 @@ interface IProps {
 
 export const TasksList: FC<IProps> = ({ channels }) => {
   const {
-    checkSub,
-    checkSubLoading,
-    checkSubError,
-    checkSubData,
-    checkSubSuccess,
+    checkSub
   } = useCheckSub();
 
   const handleCheckSub = (id: number) => {

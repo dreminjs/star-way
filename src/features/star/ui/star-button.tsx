@@ -7,6 +7,7 @@ interface StarButtonProps {
   handleMouseUp: () => void;
   isSpinningPossible: boolean;
   handleClick: () => void;
+  hasTaps: boolean
 }
 export const StarButton: FC<StarButtonProps> = ({
   handleMouseDown,
@@ -14,7 +15,8 @@ export const StarButton: FC<StarButtonProps> = ({
   spinning,
   imgRef,
   isSpinningPossible,
-  handleClick
+  handleClick,
+  hasTaps
 }) => {
   const [reset, setReset] = useState(false);
   const [buttonLocked, setButtonLocked] = useState(false);
@@ -39,7 +41,7 @@ export const StarButton: FC<StarButtonProps> = ({
   };
 
   const onMouseDown = () => {
-    if (isSpinningPossible && !buttonLocked) {
+    if (isSpinningPossible && !buttonLocked && hasTaps) {
       handleMouseDown();
       if (imgRef.current) {
         imgRef.current.classList.add("active");
@@ -48,7 +50,7 @@ export const StarButton: FC<StarButtonProps> = ({
   };
 
   const onTouchStart = () => {
-    if (isSpinningPossible && !buttonLocked && imgRef.current) {
+    if (isSpinningPossible && !buttonLocked && imgRef.current && hasTaps) {
       handleMouseDown();
       imgRef.current.classList.add("active");
     }
