@@ -9,7 +9,7 @@ interface IProps {
 export const FriendsList: FC<IProps> = ({ refs }) => {
   return (
     <ul className="h-[80svh] overflow-y-hidden w-full mt-5">
-      {refs?.map((ref, idx) => (
+      {refs?.sort((a,b) => b.powder - a.powder).map((ref, idx) => (
         <FriendItem key={idx} name={ref.name} powder={ref.powder} idx={idx} />
       ))}
     </ul>

@@ -16,6 +16,10 @@ export const MainWrapper = () => {
     };
   }, []);
 
+  const tg = Telegram.WebApp.platform
+
+  console.log(tg)
+
   return (
     <div className="w-full h-screen mx-auto bg-[url('/public/main-bg.png')] bg-no-repeat bg-center bg-cover overflow-hidden">
       {isPreviwVisible && (
