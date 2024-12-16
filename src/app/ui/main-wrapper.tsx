@@ -29,9 +29,9 @@ export const MainWrapper = () => {
         </div>
       )}
       {Telegram.WebApp.platform === "weba" && (
-        <div className="fixed h-screen flex items-center justify-center inset-0 z-50 bg-black">
+        <div className="fixed h-screen flex flex-col items-center justify-center inset-0 z-50 bg-black">
           <QRCode value="https://t.me/StarWayGameBot"/>
-          <h3 className="text-center text-[30px] mt-3">Играй на телефоне!</h3>
+          <h3 className="text-center text-[white] text-[30px] mt-3">Играй на телефоне!</h3>
         </div>
       )}
       <h3>{Telegram.WebApp.platform}</h3>
