@@ -50,7 +50,7 @@ export const StarButton: FC<StarButtonProps> = ({
   };
 
   const onTouchStart = () => {
-    if (isSpinningPossible && !buttonLocked && imgRef.current) {
+    if (isSpinningPossible && !buttonLocked && imgRef.current && hasTaps) {
       handleMouseDown();
       imgRef.current.classList.add("active");
     }
