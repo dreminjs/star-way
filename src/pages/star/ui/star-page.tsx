@@ -78,7 +78,7 @@ export const StarPage = () => {
 
   useEffect(() => {
     if (userData) {
-      setTaps(0);
+      setTaps(userData.taps);
       setCoins(userData.coins);
     }
   }, [userDataLoading, userData]);

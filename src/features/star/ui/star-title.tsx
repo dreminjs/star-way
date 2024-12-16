@@ -33,16 +33,7 @@ export const StarTitle: FC<IProps> = ({
   ];
 
   useEffect(() => {
-
-    console.log({
-      isSpinning,
-      isWin,
-      isWarningTitleVisible,
-      isHamsterVisible,
-      hasTaps,
-    });
-
-    if (isSpinningPossible && hasTaps) {
+    if (isSpinningPossible && hasTaps && !isSpinning) {
       setCurrentText("крути меня");
     } else if (isSpinning) {
       setCurrentText("держи меня , летим домой");
