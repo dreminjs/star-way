@@ -37,7 +37,7 @@ export const StarTitle: FC<IProps> = ({
       setCurrentText("крути меня");
     } else if (isSpinning) {
       setCurrentText("держи меня , летим домой");
-    } else if (!hasTaps && isWarningTitleVisible) {
+    } else if (hasTaps && isWarningTitleVisible) {
       setCurrentText("я устала, подожди немного");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");

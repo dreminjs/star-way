@@ -45,7 +45,15 @@ export const StarPage = () => {
   };
 
   const handleClick = () => {
+    console.log("Hello");
+    console.log({
+      isSpinningPossible,
+      spinning,
+      hasTaps,
+    });
+
     if (!isSpinningPossible && !spinning && hasTaps) {
+      console.log("Warning");
       setIsWarningTitleVisible(true);
     }
   };
@@ -65,7 +73,12 @@ export const StarPage = () => {
 
   const handleMouseUp = () => {
     setSpinning(false);
-    if (startTime !== null && intervalRef.current !== null && imgRef.current && hasTaps) {
+    if (
+      startTime !== null &&
+      intervalRef.current !== null &&
+      imgRef.current &&
+      hasTaps
+    ) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
       const endTime = Date.now();
@@ -83,10 +96,18 @@ export const StarPage = () => {
     }
   }, [userDataLoading, userData]);
 
+
+
   useEffect(() => {
     if (postResultData) {
       setTaps((prev) => prev - 1);
       setCoins(postResultData.pollen_count);
+      const timer = setTimeout(() => {
+        setIsSpinningPossible(true)
+      },5000)
+      return () => {
+        clearTimeout(timer)
+      }
     }
   }, [postResultData, postResultLoading]);
 
@@ -119,7 +140,6 @@ export const StarPage = () => {
       setHasTaps(false);
     } else {
       setHasTaps(true);
-      setIsSpinningPossible(true);
     }
   }, [userDataSuccess, taps]);
 
