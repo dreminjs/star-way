@@ -29,7 +29,7 @@ export const StarPage = () => {
 
   const handleClickPc = (e: MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
-    if (target.id !== "star-button") {
+    if (target.id !== "star-button" && "navigation") {
       setHamsterIsVisible(true);
       setPosition({ x: e.clientX, y: e.clientY });
     }
@@ -38,7 +38,7 @@ export const StarPage = () => {
   const handleClickMobile = (e: TouchEvent<HTMLButtonElement>) => {
     const touch = e.changedTouches[0];
     const target = touch.target as HTMLElement;
-    if (target.id !== "star-button") {
+    if (target.id !== "star-button" && "navigation") {
       setHamsterIsVisible(true);
       setPosition({ x: touch.clientX, y: touch.clientY });
     }
@@ -91,8 +91,6 @@ export const StarPage = () => {
   }, [postResultData, postResultLoading]);
 
   useEffect(() => {
-    console.log("is warning title: ",isWarningTitleVisible);
-
     if (isWarningTitleVisible) {
       const timer = setTimeout(() => {
         setIsWarningTitleVisible(false);
@@ -127,7 +125,7 @@ export const StarPage = () => {
 
   return (
     <section
-      className="flex h-svh flex-col items-center justify-between relative"
+      className="flex h-screen flex-col items-center justify-between relative"
       onClick={handleClickPc}
       onTouchStart={handleClickMobile}
     >
