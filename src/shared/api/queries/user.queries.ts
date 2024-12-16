@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { userService } from "../services/user.service";
 
 export const useGetUserData = () => {
-  const { data: userData, isPending: userDataLoading, isSuccess: userDataSuccess, refetch } = useQuery({
+  const { data: userData, isPending: userDataLoading, isSuccess: userDataSuccess, refetch, isFetched: userDataFetched } = useQuery({
     queryKey: ["general", "user"],
     queryFn: async () => await userService.findOneData(),
     enabled: true
@@ -12,7 +12,8 @@ export const useGetUserData = () => {
     userData,
     userDataLoading,
     userDataSuccess,
-    refetch
+    refetch,
+    userDataFetched
   };
 };
 

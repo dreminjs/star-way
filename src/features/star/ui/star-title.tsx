@@ -32,14 +32,13 @@ export const StarTitle: FC<IProps> = ({
     "напиши Эвент Старку @EventStark секретное слово (секретное слово)",
   ];
 
-
-
   useEffect(() => {
+
     if (isSpinningPossible && hasTaps && !isSpinning) {
       setCurrentText("крути меня");
     } else if (isSpinning) {
       setCurrentText("держи меня , летим домой");
-    } else if (hasTaps && isWarningTitleVisible) {
+    } else if (isWarningTitleVisible) {
       setCurrentText("я устала, подожди немного");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
@@ -51,6 +50,7 @@ export const StarTitle: FC<IProps> = ({
     } else if (isLoading) {
       setCurrentText("ищу путь домой");
     } else if (!hasTaps) {
+      console.log({ hasTaps });
       setCurrentText("Тапы закончились");
     }
     setDisplayedText("");

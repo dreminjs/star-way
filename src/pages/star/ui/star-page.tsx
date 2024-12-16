@@ -25,7 +25,8 @@ export const StarPage = () => {
   const [hasTaps, setHasTaps] = useState(false);
   const { postResult, postResultData, postResultLoading } = usePostResult();
 
-  const { userDataLoading, userData, userDataSuccess } = useGetUserData();
+  const { userDataLoading, userData, } =
+    useGetUserData();
 
   const handleClickPc = (e: MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
@@ -45,7 +46,6 @@ export const StarPage = () => {
   };
 
   const handleClick = () => {
-    console.log("Hello");
     console.log({
       isSpinningPossible,
       spinning,
@@ -53,7 +53,6 @@ export const StarPage = () => {
     });
 
     if (!isSpinningPossible && !spinning && hasTaps) {
-      console.log("Warning");
       setIsWarningTitleVisible(true);
     }
   };
@@ -93,21 +92,22 @@ export const StarPage = () => {
     if (userData) {
       setTaps(userData.taps);
       setCoins(userData.coins);
+      if (userData.taps > 0) setHasTaps(true);
+      else setHasTaps(false);
     }
   }, [userDataLoading, userData]);
-
-
 
   useEffect(() => {
     if (postResultData) {
       setTaps((prev) => prev - 1);
       setCoins(postResultData.pollen_count);
+      setIsSpinningPossible(false);
       const timer = setTimeout(() => {
-        setIsSpinningPossible(true)
-      },5000)
+        setIsSpinningPossible(true);
+      }, 5000);
       return () => {
-        clearTimeout(timer)
-      }
+        clearTimeout(timer);
+      };
     }
   }, [postResultData, postResultLoading]);
 
@@ -133,15 +133,6 @@ export const StarPage = () => {
     }, 5000);
     return () => clearTimeout(timer);
   }, [spinning]);
-
-  useEffect(() => {
-    if (userDataSuccess && taps <= 0) {
-      setIsSpinningPossible(false);
-      setHasTaps(false);
-    } else {
-      setHasTaps(true);
-    }
-  }, [userDataSuccess, taps]);
 
   return (
     <section
