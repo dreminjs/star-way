@@ -22,10 +22,10 @@ export const StarPage = () => {
   const [isWarningTitleVisible, setIsWarningTitleVisible] =
     useState<boolean>(false);
   const [wasSpinning, setWasSpinning] = useState(false);
-
+  const [hasTaps,setHasTaps] = useState(false)
   const { postResult, postResultData, postResultLoading } = usePostResult();
 
-  const { userDataLoading, userData } = useGetUserData();
+  const { userDataLoading, userData, userDataSuccess } = useGetUserData();
 
   const handleClickPc = (e: MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
@@ -46,13 +46,11 @@ export const StarPage = () => {
 
   const handleClick = () => {
     if (!isSpinningPossible && !spinning) {
-      console.log("Click");
       setIsWarningTitleVisible(true);
     }
   };
 
   const handleMouseDown = () => {
-    console.log("handleMouseDown");
     setWasSpinning(true)
     if (isSpinningPossible && taps > 0) {
       setSpinning(true);
@@ -97,7 +95,6 @@ export const StarPage = () => {
       const timer = setTimeout(() => {
         setIsWarningTitleVisible(false);
       }, 4000);
-
       return () => clearTimeout(timer);
     }
   }, [isWarningTitleVisible]);
@@ -116,13 +113,15 @@ export const StarPage = () => {
     return () => clearTimeout(timer);
   },[spinning]);
 
-
   useEffect(() => {
-    if (taps <= 0) {
-      setIsSpinningPossible(false);
-
+    if(userDataSuccess && taps <= 0){
+      setIsSpinningPossible(false)
+      setHasTaps(false)
+    } else {
+      setHasTaps(true)
+      setIsSpinningPossible(true)
     }
-  },[taps])
+  },[userDataSuccess,taps])
 
   return (
     <section
@@ -136,7 +135,7 @@ export const StarPage = () => {
       </div>
       <div>
         <StarTitle
-          hasTaps={taps > 0}
+          hasTaps={hasTaps}
           isWarningTitleVisible={isWarningTitleVisible}
           isHamsterVisible={hamsterIsVisible}
           isLoading={postResultLoading}

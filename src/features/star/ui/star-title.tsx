@@ -33,8 +33,9 @@ export const StarTitle: FC<IProps> = ({
   ];
 
   useEffect(() => {
-    if (isLoading) {
-      setCurrentText("ищу путь...");
+    console.log("is spinning possible:  ",isSpinningPossible)
+    if (isSpinningPossible) {
+      setCurrentText("крути меня");
     } else if (isSpinning) {
       setCurrentText("держи меня , летим домой");
     } else if (isWarningTitleVisible) {
@@ -46,10 +47,10 @@ export const StarTitle: FC<IProps> = ({
     } else if (isWin) {
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
-    } else if (isSpinningPossible) {
-      setCurrentText("крути меня");
-    } else {
-      setCurrentText("Тапы закончились 😭 Они обновлятся завтра 🙏");
+    } else if (isLoading) {
+      setCurrentText("ищу путь домой");
+    } else if (!hasTaps) {
+      setCurrentText("Тапы закончились");
     }
     setDisplayedText("");
     setLetterIndex(0);
@@ -72,10 +73,6 @@ export const StarTitle: FC<IProps> = ({
       return () => clearTimeout(nextMessageTimeout);
     }
   }, [letterIndex, currentText, isWin, messageIndex]);
-
-  useEffect(() => {
-    console.log("isWarningTitleVisible", isWarningTitleVisible);
-  }, [isWarningTitleVisible]);
 
   return (
     <h3
