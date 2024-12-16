@@ -92,7 +92,7 @@ export const StarPage = () => {
     if (userData) {
       setTaps(userData.taps);
       setCoins(userData.coins);
-      if (userData.taps > 0) setHasTaps(true);
+      if (userData.taps > 0) setHasTaps(false);
       else setHasTaps(false);
     }
   }, [userDataLoading, userData]);
@@ -162,7 +162,7 @@ export const StarPage = () => {
           imgRef={imgRef}
           handleMouseDown={handleMouseDown}
           handleMouseUp={handleMouseUp}
-          hasTaps={taps > 0}
+          hasTaps={hasTaps}
         />
         <CoinsCount coins={coins} />
       </div>
