@@ -6,7 +6,7 @@ import { useGetTasks } from "../../../shared";
 import { Header } from "../../../widgets/header";
 
 export const TasksPage = () => {
-  const { tasks } = useGetTasks();
+  const { tasks, refetchTasks } = useGetTasks();
 
 
   return (
@@ -21,7 +21,7 @@ export const TasksPage = () => {
           tasksCount={tasks?.length || 0}
         />
       </div>
-      <TasksList channels={tasks || []} />
+      <TasksList refetch={refetchTasks} channels={tasks || []} />
       <Navigation />
     </section>
   );

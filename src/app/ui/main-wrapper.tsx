@@ -33,6 +33,7 @@ export const MainWrapper = () => {
           <QRCode value="https://t.me/StarWayGameBot" />31231
         </div>
       )}
+      <h3>{Telegram.WebApp.platform}</h3>
       <Container>
         <Outlet />
       </Container>

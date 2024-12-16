@@ -3,7 +3,7 @@ import { QUERY_KEYS } from "../../model/constants";
 import { tasksService } from "../services/tasks.service";
 
 export const useGetTasks = () => {
-  const { data, isPending: tasksLoading } = useQuery({
+  const { data, isPending: tasksLoading, refetch: refetchTasks } = useQuery({
     queryKey: [QUERY_KEYS.tasks],
     queryFn: async () => await tasksService.findMany(),
   });
@@ -11,5 +11,6 @@ export const useGetTasks = () => {
   return {
     tasks: data?.channels,
     tasksLoading,
+    refetchTasks
   };
 };

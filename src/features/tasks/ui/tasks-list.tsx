@@ -1,20 +1,26 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { ITask } from "../../../shared/model/types/tasks.interfaces";
 import { TasksItem } from "../../../entities/tasks";
 import { useCheckSub } from "../../../shared/api/queries/prise.queries";
 
 interface IProps {
   channels: ITask[];
+  refetch: () => void
 }
 
-export const TasksList: FC<IProps> = ({ channels }) => {
+export const TasksList: FC<IProps> = ({ channels,refetch }) => {
   const {
-    checkSub
+    checkSub,
+    checkSubSuccess
   } = useCheckSub();
 
   const handleCheckSub = (id: number) => {
     checkSub({ group_id: id });
   };
+
+  useEffect(() => {
+    refetch()
+  },[checkSubSuccess, refetch])
 
   return (
     <ul className="h-[80svh] w-full mt-[50px] overflow-y-hidden">
