@@ -22,7 +22,7 @@ export const StarPage = () => {
   const [isWarningTitleVisible, setIsWarningTitleVisible] =
     useState<boolean>(false);
   const [wasSpinning, setWasSpinning] = useState(false);
-  const [hasTaps,setHasTaps] = useState(false)
+  const [hasTaps, setHasTaps] = useState(false);
   const { postResult, postResultData, postResultLoading } = usePostResult();
 
   const { userDataLoading, userData, userDataSuccess } = useGetUserData();
@@ -45,14 +45,14 @@ export const StarPage = () => {
   };
 
   const handleClick = () => {
-    if (!isSpinningPossible && !spinning) {
+    if (!isSpinningPossible && !spinning && hasTaps) {
       setIsWarningTitleVisible(true);
     }
   };
 
   const handleMouseDown = () => {
-    setWasSpinning(true)
-    if (isSpinningPossible && taps > 0) {
+    setWasSpinning(true);
+    if (isSpinningPossible && hasTaps) {
       setSpinning(true);
       setElapsedTime(0);
       const start = Date.now();
@@ -65,7 +65,7 @@ export const StarPage = () => {
 
   const handleMouseUp = () => {
     setSpinning(false);
-    if (startTime !== null && intervalRef.current !== null && imgRef.current) {
+    if (startTime !== null && intervalRef.current !== null && imgRef.current && hasTaps) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
       const endTime = Date.now();
@@ -78,7 +78,7 @@ export const StarPage = () => {
 
   useEffect(() => {
     if (userData) {
-      setTaps(userData.taps);
+      setTaps(0);
       setCoins(userData.coins);
     }
   }, [userDataLoading, userData]);
@@ -91,6 +91,8 @@ export const StarPage = () => {
   }, [postResultData, postResultLoading]);
 
   useEffect(() => {
+    console.log("is warning title: ",isWarningTitleVisible);
+
     if (isWarningTitleVisible) {
       const timer = setTimeout(() => {
         setIsWarningTitleVisible(false);
@@ -111,17 +113,17 @@ export const StarPage = () => {
       setIsSpinningPossible(true);
     }, 5000);
     return () => clearTimeout(timer);
-  },[spinning]);
+  }, [spinning]);
 
   useEffect(() => {
-    if(userDataSuccess && taps <= 0){
-      setIsSpinningPossible(false)
-      setHasTaps(false)
+    if (userDataSuccess && taps <= 0) {
+      setIsSpinningPossible(false);
+      setHasTaps(false);
     } else {
-      setHasTaps(true)
-      setIsSpinningPossible(true)
+      setHasTaps(true);
+      setIsSpinningPossible(true);
     }
-  },[userDataSuccess,taps])
+  }, [userDataSuccess, taps]);
 
   return (
     <section

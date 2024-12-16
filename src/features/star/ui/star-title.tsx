@@ -33,12 +33,20 @@ export const StarTitle: FC<IProps> = ({
   ];
 
   useEffect(() => {
-    console.log("is spinning possible:  ",isSpinningPossible)
-    if (isSpinningPossible) {
+
+    console.log({
+      isSpinning,
+      isWin,
+      isWarningTitleVisible,
+      isHamsterVisible,
+      hasTaps,
+    });
+
+    if (isSpinningPossible && hasTaps) {
       setCurrentText("крути меня");
     } else if (isSpinning) {
       setCurrentText("держи меня , летим домой");
-    } else if (isWarningTitleVisible) {
+    } else if (!hasTaps && isWarningTitleVisible) {
       setCurrentText("я устала, подожди немного");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
