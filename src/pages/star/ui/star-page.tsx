@@ -90,7 +90,7 @@ export const StarPage = () => {
 
   useEffect(() => {
     if (userData) {
-      setTaps(userData.coins);
+      setTaps(userData.taps);
       setCoins(userData.coins);
 
       if (userData.taps < 0) setHasTaps(true);
