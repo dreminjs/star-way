@@ -18,7 +18,7 @@ export const TasksItem: FC<IProps> = ({ content, link, onCheckSub, id }) => {
       </Link>
       <p className="text-white text-wrap break-words">{content}</p>
       <button onClick={() => onCheckSub(id)}>
-        <img className="h-[45px] " src={Prise} alt="" />
+        <img className="h-[45px] w-[45px] " src={Prise} alt="" />
       </button>
     </li>
   );
