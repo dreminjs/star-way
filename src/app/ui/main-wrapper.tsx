@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Container } from "./container";
 import Preview from "../../assets/loading-page-2.png";
 import QRCode from "react-qr-code";
-
+/// .
 export const MainWrapper = () => {
   const [isPreviwVisible, setIsPreviwVisible] = useState(true);
 
@@ -34,7 +34,6 @@ export const MainWrapper = () => {
           <h3 className="text-center text-[white] text-[30px] mt-3">Играй на телефоне!</h3>
         </div>
       )}
-      <h3>{Telegram.WebApp.platform}</h3>
       <Container>
         <Outlet />
       </Container>
