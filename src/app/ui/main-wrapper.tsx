@@ -10,7 +10,7 @@ export const MainWrapper = () => {
   useEffect(() => {
     const splashTimer = setTimeout(() => {
       setIsPreviwVisible(false);
-    }, 5000); // Скрыть картинку через 3 секунды
+    }, 5000); 
 
     return () => {
       clearTimeout(splashTimer);
