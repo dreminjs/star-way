@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Container } from "./container";
 import Preview from "../../assets/loading-page-2.png";
 import QRCode from "react-qr-code";
-
+/// .
 export const MainWrapper = () => {
   const [isPreviwVisible, setIsPreviwVisible] = useState(true);
 
