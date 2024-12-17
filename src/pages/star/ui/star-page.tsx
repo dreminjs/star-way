@@ -25,8 +25,7 @@ export const StarPage = () => {
   const [hasTaps, setHasTaps] = useState(false);
   const { postResult, postResultData, postResultLoading } = usePostResult();
 
-  const { userDataLoading, userData, } =
-    useGetUserData();
+  const { userDataLoading, userData } = useGetUserData();
 
   const handleClickPc = (e: MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
@@ -90,7 +89,7 @@ export const StarPage = () => {
 
   useEffect(() => {
     if (userData) {
-      setTaps(userData.coins);
+      setTaps(userData.taps);
       setCoins(userData.coins);
 
       if (userData.taps < 0) setHasTaps(true);
