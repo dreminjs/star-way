@@ -83,16 +83,17 @@ export const StarPage = () => {
       const endTime = Date.now();
       const totalElapsedTime = endTime - startTime;
       setElapsedTime(totalElapsedTime);
-      if (totalElapsedTime > 1000) postResult(totalElapsedTime);
+      if (totalElapsedTime > 1000) postResult(15100);
       setIsSpinningPossible(false);
     }
   };
 
   useEffect(() => {
     if (userData) {
-      setTaps(userData.taps);
+      setTaps(userData.coins);
       setCoins(userData.coins);
-      if (userData.taps > 0) setHasTaps(true);
+
+      if (userData.taps < 0) setHasTaps(true);
       else setHasTaps(false);
     }
   }, [userDataLoading, userData]);
