@@ -82,7 +82,7 @@ export const StarPage = () => {
       const endTime = Date.now();
       const totalElapsedTime = endTime - startTime;
       setElapsedTime(totalElapsedTime);
-      if (totalElapsedTime > 1000) postResult(15100);
+      if (totalElapsedTime > 1000) postResult(totalElapsedTime);
       setIsSpinningPossible(false);
     }
   };
@@ -93,7 +93,7 @@ export const StarPage = () => {
       setCoins(userData.coins);
 
       if (userData.taps < 0) setHasTaps(true);
-      else setHasTaps(false);
+      else setHasTaps(true);
     }
   }, [userDataLoading, userData]);
 
