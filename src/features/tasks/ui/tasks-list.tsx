@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { ITask } from "../../../shared/model/types/tasks.interfaces";
-import { TasksItem } from "../../../entities/tasks";
+import {  TasksItem } from "../../../entities/tasks";
 import { useCheckSub } from "../../../shared/api/queries/prise.queries";
 
 interface IProps {
@@ -24,6 +24,7 @@ export const TasksList: FC<IProps> = ({ channels,refetch }) => {
 
   return (
     <ul className="h-[80svh] w-full mt-[50px] overflow-y-hidden">
+  
       {channels.map((channel, idx) => (
         <TasksItem
           id={channel.id}
@@ -33,6 +34,7 @@ export const TasksList: FC<IProps> = ({ channels,refetch }) => {
           content={channel.name}
         />
       ))}
+      
     </ul>
   );
 };
