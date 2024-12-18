@@ -18,7 +18,7 @@ export const TasksPage = () => {
           Задания
         </h3>
         <UserInfo
-          tasksCount={tasks?.length || 0}
+          tasksCount={tasks?.length || 1}
         />
       </div>
       <TasksList refetch={refetchTasks} channels={tasks || []} />
