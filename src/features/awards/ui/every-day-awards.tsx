@@ -18,35 +18,35 @@ export const EveryDayAwards = () => {
       <div className="bg-[#1e2541] border-[#90b0c4] border-y-[1px]">
         {days?.counter !== undefined && (
           <ul className="flex justify-center items-center mx-auto py-2">
-            <li className="pl-0  pr-5">
+            <li className="pl-0 w-[69px]  pr-5">
               <img
                 className=""
                 src={days.counter >= 0 ? PlusOneActive : PlusOne}
                 alt=""
               />
             </li>
-            <li className="pl-5  pr-5 border-l-2 border-opacity-50 border-[#5991bd]">
+            <li className="pl-5 w-[90px] pr-5 border-l-2 border-opacity-50 border-[#5991bd]">
               <img
                 className=""
                 src={days.counter >= 1 ? PlusTwoActive : PlusTwo}
                 alt=""
               />
             </li>
-            <li className="pl-5  pr-5 border-l-2 border-opacity-50 border-[#5991bd]">
+            <li className="pl-5 w-[90px]  pr-5 border-l-2 border-opacity-50 border-[#5991bd]">
               <img
                 className=""
                 src={days.counter >= 2 ? PlusThreeActive : PlusThree}
                 alt=""
               />
             </li>
-            <li className="pl-5   pr-5 border-l-2 border-opacity-50 border-r-2 border-[#5991bd]">
+            <li className="pl-5 w-[90px]   pr-5 border-l-2 border-opacity-50 border-r-2 border-[#5991bd]">
               <img
                 className=""
                 src={days.counter >= 3 ? PlusFourActive : PlusFour}
                 alt=""
               />
             </li>
-            <li className="pl-5 w-[120px] ">
+            <li className="pl-5 w-[69px] ">
               <img
                 className=""
                 src={days.counter >= 4 ? PlusFiveActive : PlusFive}
