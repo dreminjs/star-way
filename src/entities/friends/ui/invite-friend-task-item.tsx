@@ -22,8 +22,8 @@ https://t.me/StarWayGameBot?start=sendRate-${tg.user?.id || 1413661451}
       <img src={Tg} alt="" className="h-[50px]" />
       <p className="text-white text-wrap break-words">{"Пригласить друзей"}</p>
 
-      <button className="basis-[52px]">
-        <img className="h-[45px]" src={Prise} alt="" />
+      <button className="basis-[52px] h-[45px]">
+        <img className="" src={Prise} alt="" />
       </button>
     </li>
   );
