@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Prise from "../../../assets/+9-task-award.png";
+import Prise from "../../../assets/+5-task-award.png";
 import Tg from "../../../assets/tg.png";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ export const TasksItem: FC<IProps> = ({ content, link, onCheckSub, id }) => {
         <img src={Tg} alt="" className="h-[50px]" />
         <p className="text-white text-wrap break-words">{content}</p>
       </Link>
-      <button className="basis-[25%]" onClick={() => onCheckSub(id)}>
+      <button className="basis-[52px]" onClick={() => onCheckSub(id)}>
         <img className="h-[45px]" src={Prise} alt="" />
       </button>
      

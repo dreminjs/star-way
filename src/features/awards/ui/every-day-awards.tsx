@@ -1,10 +1,10 @@
-import PlusNine from "../../../assets/+9.png";
+import PlusFive from "../../../assets/+5.png";
 import PlusFour from "../../../assets/+4.png";
 import PlusThree from "../../../assets/+3.png";
 import PlusTwo from "../../../assets/+2.png";
 import PlusOne from "../../../assets/+1.png";
 import { useCheckEnter } from "../../../shared";
-import PlusNineActive from "../../../assets/+9-active.png";
+import PlusFiveActive from "../../../assets/+5-active.png";
 import PlusFourActive from "../../../assets/+4-active.png";
 import PlusThreeActive from "../../../assets/+3-active.png";
 import PlusTwoActive from "../../../assets/+2-active.png";
@@ -49,7 +49,7 @@ export const EveryDayAwards = () => {
             <li className="pl-5">
               <img
                 className="h-[45px] w-[45px]"
-                src={days.counter >= 4 ? PlusNineActive : PlusNine}
+                src={days.counter >= 4 ? PlusFiveActive : PlusFive}
                 alt=""
               />
             </li>

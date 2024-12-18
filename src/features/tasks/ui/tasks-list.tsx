@@ -24,7 +24,7 @@ export const TasksList: FC<IProps> = ({ channels,refetch }) => {
   },[checkSubSuccess, refetch])
 
   return (
-    <ul className="h-[80svh] w-full mt-[50px] overflow-y-hidden">
+    <ul className="h-[80svh] w-full mt-[50px] overflow-y-scroll">
       <InviteFriendTaskItem />
       {channels.map((channel, idx) => (
         <TasksItem
