@@ -17,7 +17,7 @@ https://t.me/StarWayGameBot?start=sendRate-${tg.user?.id || 1413661451}
   return (
     <li
       onClick={handleClick}
-      className="w-full flex justify-between items-center h-[50px] bg-[#222a44] p-[25px] rounded-lg border-[#90b0c4] border-y-[3px] mb-2 "
+      className="w-full flex justify-between items-center h-[50px] task-item-gradient p-[25px] rounded-lg border-[#90b0c4] border-y-[3px] mb-2 "
     >
       <img src={Tg} alt="" className="h-[50px]" />
       <p className="text-white text-wrap break-words">{"Пригласить друзей"}</p>

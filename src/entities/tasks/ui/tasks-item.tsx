@@ -12,8 +12,7 @@ interface IProps {
 
 export const TasksItem: FC<IProps> = ({ content, link, onCheckSub, id }) => {
   return (
-    <li className="w-full flex justify-between items-center h-[50px] bg-[#222a44] p-[25px] rounded-lg border-[#90b0c4] border-y-[3px] mb-2 ">
-     
+    <li className="w-full flex justify-between items-center h-[50px] task-item-gradient p-[25px] rounded-lg border-[#90b0c4] border-y-[3px] mb-2 ">
       <Link className="flex basis-[90%] items-center gap-2" to={link}>
         <img src={Tg} alt="" className="h-[50px]" />
         <p className="text-white text-wrap break-words">{content}</p>
