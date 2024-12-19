@@ -5,15 +5,16 @@ export const InviteFriendTaskItem = () => {
   const tg = window.Telegram.WebApp.initDataUnsafe;
 
   const handleClick = () => {
-    const link = `
+  const link = `
 Получи от меня 5 🚀 ТАПов! 
-Верни звезду домой, и она  🎁 подарит Premium подписку! Не упусти шанс, реально стоит попробовать! ✌️      
+Верни звезду домой, и она 🎁 подарит Premium подписку! Не упусти шанс, реально стоит попробовать! ✌️      
 https://t.me/StarWayGameBot?start=sendRate-${tg.user?.id || 1413661451}
-       `;
+  `;
 
-    
-window.Telegram.WebApp.sendData(link)
-  };
+  // Открытие ссылки в Telegram
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}`, "_blank");
+};
+
 
   return (
     <li
