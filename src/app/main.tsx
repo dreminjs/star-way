@@ -1,4 +1,4 @@
-import { StrictMode,useEffect } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 
@@ -13,12 +13,6 @@ import { FriendsPage } from "../pages/friends";
 Telegram.WebApp.disableVerticalSwipes()
 
 Telegram.WebApp.expand()
-
-useEffect(() => {
-  const tg = window.Telegram.WebApp;
-  tg.ready(); // Сообщает Telegram, что приложение готово
-}, []);
-
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
