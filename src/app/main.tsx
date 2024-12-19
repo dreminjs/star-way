@@ -14,6 +14,12 @@ Telegram.WebApp.disableVerticalSwipes()
 
 Telegram.WebApp.expand()
 
+useEffect(() => {
+  const tg = window.Telegram.WebApp;
+  tg.ready(); // Сообщает Telegram, что приложение готово
+}, []);
+
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
