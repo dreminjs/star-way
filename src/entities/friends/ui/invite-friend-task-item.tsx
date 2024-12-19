@@ -11,7 +11,8 @@ export const InviteFriendTaskItem = () => {
 https://t.me/StarWayGameBot?start=sendRate-${tg.user?.id || 1413661451}
        `;
 
-    navigator.clipboard.writeText(link);
+    
+window.Telegram.WebApp.sendData(link)
   };
 
   return (
