@@ -16,7 +16,7 @@ export const StarTitle: FC<IProps> = ({
   delay = 100,
   isLoading,
   isSpinningPossible,
-  isWarningTitleVisible
+  isWarningTitleVisible,
   hasTaps,
 }) => {
   const [displayedText, setDisplayedText] = useState("крути меня");
