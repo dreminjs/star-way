@@ -16,8 +16,6 @@ export const StarPage = () => {
   const intervalRef = useRef<number | null>(null);
   const [taps, setTaps] = useState<number>(0);
   const [coins, setCoins] = useState<number>(0);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [hamsterIsVisible, setHamsterIsVisible] = useState(false);
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
   const [isWarningTitleVisible, setIsWarningTitleVisible] =
     useState<boolean>(false);
@@ -27,30 +25,12 @@ export const StarPage = () => {
 
   const { userDataLoading, userData } = useGetUserData();
 
-  const handleClickPc = (e: MouseEvent<HTMLButtonElement>) => {
-    const target = e.target as HTMLElement;
-    if (target.id !== "star-button" && "navigation") {
-      setHamsterIsVisible(true);
-      setPosition({ x: e.clientX, y: e.clientY });
-    }
-  };
+  
 
-  const handleClickMobile = (e: TouchEvent<HTMLButtonElement>) => {
-    const touch = e.changedTouches[0];
-    const target = touch.target as HTMLElement;
-    if (target.id !== "star-button" && "navigation") {
-      setHamsterIsVisible(true);
-      setPosition({ x: touch.clientX, y: touch.clientY });
-    }
-  };
+  
 
   const handleClick = () => {
-    console.log({
-      isSpinningPossible,
-      spinning,
-      hasTaps,
-    });
-
+  
     if (!isSpinningPossible && !spinning && hasTaps) {
       setIsWarningTitleVisible(true);
     }
@@ -122,13 +102,6 @@ export const StarPage = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setHamsterIsVisible(false);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [hamsterIsVisible]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
       setIsSpinningPossible(true);
     }, 5000);
     return () => clearTimeout(timer);
@@ -137,8 +110,6 @@ export const StarPage = () => {
   return (
     <section
       className="flex h-screen flex-col items-center justify-between relative"
-      onClick={handleClickPc}
-      onTouchStart={handleClickMobile}
     >
       <div className="w-full">
         <Header />
@@ -146,9 +117,7 @@ export const StarPage = () => {
       </div>
       <div>
         <StarTitle
-          hasTaps={hasTaps}
-          isWarningTitleVisible={isWarningTitleVisible}
-          isHamsterVisible={hamsterIsVisible}
+          hasTaps={hasTaps}       isWarningTitleVisible={isWarningTitleVisible}        
           isLoading={postResultLoading}
           isWin={postResultData?.win}
           isSpinning={spinning}
