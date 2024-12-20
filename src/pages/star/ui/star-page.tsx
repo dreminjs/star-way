@@ -5,7 +5,6 @@ import { usePostResult } from "../../../shared";
 import { Header } from "../../../widgets/header";
 import { useGetUserData } from "../../../shared/api/queries/user.queries";
 import { CoinsCount } from "../../../features/coins";
-import Hamster from "../../../assets/hamster.png";
 import { AddedCoins } from "../../../features/coins/ui/added-coins";
 
 export const StarPage = () => {
