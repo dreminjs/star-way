@@ -13,7 +13,7 @@ export const UserInfo: FC<IProps> = ({ tasksCount }) => {
 
 
   return (
-    <div className="flex items-center justify-center max-w-[370px] mx-auto bg-[#222a44]  rounded-xl border-[#5991bd] border-y-2">
+    <div className="flex items-center justify-center max-w-[370px] mx-auto task-item-gradient  rounded-xl border-[#5991bd] border-y-2">
       <div className="flex justify-center items-center gap-2 ">
         <div className="flex gap-2">
           <p className="gradient-text text-[30px] font-bold">тапов </p>

@@ -45,12 +45,7 @@ export const StarPage = () => {
   };
 
   const handleClick = () => {
-    console.log({
-      isSpinningPossible,
-      spinning,
-      hasTaps,
-    });
-
+    
     if (!isSpinningPossible && !spinning && hasTaps) {
       setIsWarningTitleVisible(true);
     }
