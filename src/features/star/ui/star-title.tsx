@@ -5,7 +5,6 @@ interface IProps {
   isWin?: boolean;
   delay?: number;
   isLoading: boolean;
-  isHamsterVisible: boolean;
   isSpinningPossible: boolean;
   isWarningTitleVisible: boolean;
   hasTaps: boolean;
@@ -16,7 +15,6 @@ export const StarTitle: FC<IProps> = ({
   isWin,
   delay = 100,
   isLoading,
-  isHamsterVisible,
   isSpinningPossible,
   isWarningTitleVisible,
   hasTaps,
@@ -41,8 +39,6 @@ export const StarTitle: FC<IProps> = ({
       setCurrentText("я устала, подожди немного");
     } else if (isWin !== undefined && !isWin) {
       setCurrentText("мимо,не попали");
-    } else if (isHamsterVisible) {
-      setCurrentText("404");
     } else if (isWin) {
       setCurrentText(winMessages[0]);
       setMessageIndex(0);
@@ -54,7 +50,7 @@ export const StarTitle: FC<IProps> = ({
     }
     setDisplayedText("");
     setLetterIndex(0);
-  }, [isSpinning, isWin, isWarningTitleVisible, isHamsterVisible, hasTaps]);
+  }, [isSpinning, isWin, isWarningTitleVisible, hasTaps]);
 
   useEffect(() => {
     if (letterIndex < currentText.length) {

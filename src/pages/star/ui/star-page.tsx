@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect, MouseEvent, TouchEvent } from "react";
+import { useState, useRef, useEffect } from "react";
 import { StarButton, StarHeader, StarTitle } from "../../../features/star";
 import { Navigation } from "../../../features/navigation";
 import { usePostResult } from "../../../shared";
 import { Header } from "../../../widgets/header";
 import { useGetUserData } from "../../../shared/api/queries/user.queries";
 import { CoinsCount } from "../../../features/coins";
-import Hamster from "../../../assets/hamster.png";
 import { AddedCoins } from "../../../features/coins/ui/added-coins";
 
 export const StarPage = () => {
@@ -16,8 +15,6 @@ export const StarPage = () => {
   const intervalRef = useRef<number | null>(null);
   const [taps, setTaps] = useState<number>(0);
   const [coins, setCoins] = useState<number>(0);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [hamsterIsVisible, setHamsterIsVisible] = useState(false);
   const [isSpinningPossible, setIsSpinningPossible] = useState(true);
   const [isWarningTitleVisible, setIsWarningTitleVisible] =
     useState<boolean>(false);
@@ -27,25 +24,12 @@ export const StarPage = () => {
 
   const { userDataLoading, userData } = useGetUserData();
 
-  const handleClickPc = (e: MouseEvent<HTMLButtonElement>) => {
-    const target = e.target as HTMLElement;
-    if (target.id !== "star-button" && "navigation") {
-      setHamsterIsVisible(true);
-      setPosition({ x: e.clientX, y: e.clientY });
-    }
-  };
+  
 
-  const handleClickMobile = (e: TouchEvent<HTMLButtonElement>) => {
-    const touch = e.changedTouches[0];
-    const target = touch.target as HTMLElement;
-    if (target.id !== "star-button" && "navigation") {
-      setHamsterIsVisible(true);
-      setPosition({ x: touch.clientX, y: touch.clientY });
-    }
-  };
+  
 
   const handleClick = () => {
-    
+  
     if (!isSpinningPossible && !spinning && hasTaps) {
       setIsWarningTitleVisible(true);
     }
@@ -117,13 +101,6 @@ export const StarPage = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setHamsterIsVisible(false);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [hamsterIsVisible]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
       setIsSpinningPossible(true);
     }, 5000);
     return () => clearTimeout(timer);
@@ -132,8 +109,6 @@ export const StarPage = () => {
   return (
     <section
       className="flex h-screen flex-col items-center justify-between relative"
-      onClick={handleClickPc}
-      onTouchStart={handleClickMobile}
     >
       <div className="w-full">
         <Header />
@@ -141,9 +116,7 @@ export const StarPage = () => {
       </div>
       <div>
         <StarTitle
-          hasTaps={hasTaps}
-          isWarningTitleVisible={isWarningTitleVisible}
-          isHamsterVisible={hamsterIsVisible}
+          hasTaps={hasTaps}       isWarningTitleVisible={isWarningTitleVisible}        
           isLoading={postResultLoading}
           isWin={postResultData?.win}
           isSpinning={spinning}
@@ -162,14 +135,7 @@ export const StarPage = () => {
         <CoinsCount coins={coins} />
       </div>
       <Navigation />
-      {hamsterIsVisible && (
-        <img
-          style={{ left: position.x, top: position.y }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[50px]"
-          src={Hamster}
-          alt="hamster"
-        />
-      )}
+ 
     </section>
   );
 };
