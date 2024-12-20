@@ -50,7 +50,7 @@ export const StarTitle: FC<IProps> = ({
     }
     setDisplayedText("");
     setLetterIndex(0);
-  }, [isSpinning, isWin, isWarningTitleVisible, isHamsterVisible, hasTaps]);
+  }, [isSpinning, isWin, isWarningTitleVisible, hasTaps]);
 
   useEffect(() => {
     if (letterIndex < currentText.length) {
