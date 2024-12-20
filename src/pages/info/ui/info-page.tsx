@@ -4,10 +4,7 @@ import { Navigation } from "../../../features/navigation";
 
 export const InfoPage = () => {
     const infoMessage = [
-      "За 1 секунду звезда пролетает 1 световой год.",
-      "Координат - точка времени на которой находится дом звёздочки.",
-      "Пыль - индикатор приближенности к дому.",
-      "...",
+      "Я в детстве так мечтал стать космонавтом, но в результате стал — Космосом"
     ];
   
     const [displayedMessages, setDisplayedMessages] = useState<string[]>([]);
